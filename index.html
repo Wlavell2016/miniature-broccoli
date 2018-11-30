@@ -24,7 +24,19 @@
         height: auto;
       }
 
-      #mapid { height: 100vh;
+      #logo-image {
+              max-height: 45px;
+              margin-right: 8px;
+              margin-left: 8px;
+              position: fixed;
+              display:inline-block;
+              top: 7px;
+              left:10px;
+              display:inline-block;
+            }
+
+      #mapid {
+        height: 100vh;
       }
 
       #header {
@@ -36,6 +48,25 @@
         z-index:1000000;
         background: rgba(35,35,35,.8);
         box-shadow: 2px 2px 5px #888;
+        font-family: "Lato", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 16px;
+        letter-spacing:-0.5px;
+        line-height: 60px;
+        text-transform: uppercase;
+      }
+
+      #tittelnavn  {
+        font-size: 20px;
+        line-height:22px;
+        color: #fafafa;
+        display: inline;
+        font-weight: 500;
+        margin-block-end: 10px;
+        margin-block-start: 20px;
+        margin-bottom: 10px;
+        margin-left: 70px;
+        font-weight: 500;
       }
 
       #slider {
@@ -47,7 +78,7 @@
         background: rgba(35,35,35,.8);
         color: rgb(255, 255, 255); text-transform: uppercase;
         transform: translateY(-100%) translateY(-62px);
-        -webkit-transform: translateY(-120%);
+        -webkit-transform: translateY(-100%);
       }
 
       .slide-in {
@@ -85,6 +116,9 @@
   </head>
   <body>
     <header id="header">
+        <img id = "logo-image" src="assets/img/kommunevaapenet.png" alt="Verdensarven / Tinn kommune">
+            <h1 id = "tittelnavn">verdensarvbyen rjukan</h1>
+
     </header>
       <div id="mapid"></div>
       <!--div id="kartRjukan" style="width:1050px;position:fixed; bottom:0px;right:0px;z-index:1000;"><img src="assets/img/rjukansentrum.png" style="width:1050px;"></div-->
