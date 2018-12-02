@@ -14,25 +14,48 @@
     <style>
       body {
         font-family: 'Lato', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: auto;
+        text-rendering: optimizeLegibility;
+      }
+
+      .content {
+        max-width: 960px;
+        margin: auto;
+        opacity: 1;
       }
 
       p, h1 {
         margin-left:10px;margin-right:10px;
       }
 
+      a {
+        color: rgb(1, 115, 182);
+        cursor: pointer;
+        font-family: Lato, sans-serif;
+        font-size: 13px;
+        font-weight:700;
+        letter-spacing:normal;
+        line-height:18.5714px;
+        margin-bottom:0px;
+        margin-left:5px;
+      }
+
       img {max-width: 100%;
         height: auto;
+        opacity: 1;
+
       }
 
       #logo-image {
               max-height: 45px;
-              margin-right: 8px;
+              margin-right: 8px;margin-top:7px;
               margin-left: 8px;
-              position: fixed;
               display:inline-block;
               top: 7px;
               left:10px;
-              display:inline-block;
+
             }
 
       #mapid {
@@ -56,30 +79,42 @@
         text-transform: uppercase;
       }
 
+      #headercontent {
+        height:60px;
+        box-sizing: border-box;
+      }
+
       #tittelnavn  {
         font-size: 20px;
-        line-height:22px;
         color: #fafafa;
         display: inline;
         font-weight: 500;
         margin-block-end: 10px;
         margin-block-start: 20px;
         margin-bottom: 10px;
-        margin-left: 70px;
+        line-height:60px;
         font-weight: 500;
+        position:relative;top: -12px;
       }
 
       #slider {
-        width:100%;
-        position:fixed;
-        top:62px;
-        right:0px;
-        z-index:1001;
-        background: rgba(35,35,35,.8);
-        color: rgb(255, 255, 255); text-transform: uppercase;
+        width: 100%;
+        color: #333;
+        background: rgba(255, 255, 255, 0.3);
+        position: fixed;
+        top: 62px;
+        right: 0px;
+        z-index: 1001;
+        text-transform: uppercase;
         transform: translateY(-100%) translateY(-62px);
         -webkit-transform: translateY(-100%) translateY(-62px);
+        padding-bottom: 50px;
       }
+
+      #slider img {border: 5px solid #292929; margin: 10px;
+ outline: 5px solid #e3e3e3;}
+
+
 
       .slide-in {
         animation: slide-in 0.5s forwards;
@@ -115,14 +150,25 @@
 
   </head>
   <body>
-    <header id="header">
+    <header id = "header">
+      <div class = "content" id = "headercontent">
         <img id = "logo-image" src="assets/img/kommunevaapenet.png" alt="Verdensarven / Tinn kommune">
-            <h1 id = "tittelnavn">verdensarvbyen rjukan</h1>
-
+            <p id = "tittelnavn" >verdensarvbyen rjukan</h1>
+      </div>
     </header>
-      <div id="mapid"></div>
+      <div id = "mapid"></div>
       <!--div id="kartRjukan" style="width:1050px;position:fixed; bottom:0px;right:0px;z-index:1000;"><img src="assets/img/rjukansentrum.png" style="width:1050px;"></div-->
-      <div id="slider"><h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><center><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg'></center><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a></div>
+      <div id = "slider">
+        <div id = "slidercontent" class="content" style="background:rgba(255, 255, 255, 1); margin-top:20px;
+        padding-left: 25px;
+        padding-bottom: 25px;
+        padding-right: 25px;
+        border: 1px solid rgba(35,35,35,.8);">
+          <h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p>
+            <img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style='width:350px;' width:"350px";>
+            <a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>
+        </div>
+      </div>
 
       <!-- Javascript -->
       <script>
@@ -434,7 +480,7 @@
           [59.878491, 8.593787517988031],
           [59.878472, 8.593523915838876],
           [59.878745, 8.59344806059727],],
-           {weight: 1, fillColor: 'green', color: 'grey'}).addTo(verdensarvkart).bindPopup("Torget 1").on('click', function() {document.getElementById('slider').style.visibility = 'visible';});
+           {weight: 1, fillColor: 'green', color: 'grey'}).addTo(verdensarvkart).bindPopup("Torget 1").on('click', function() {document.getElementById('slidercontent').style.visibility = 'visible';});
         var polygon = L.polygon([
           [59.878551, 8.594595452685641],
           [59.87857, 8.594857631245073],
@@ -442,7 +488,7 @@
           [59.87883, 8.594515779447217],],
            {weight: 1, fillColor: 'green', color: 'grey'}).addTo(verdensarvkart).bindPopup("Torget 2").on('click', function() {
             $slider.setAttribute('class', 'slide-in');
-            document.getElementById('slider').innerHTML = " ";
+            document.getElementById('slidercontent').innerHTML = " ";
           });
 
         // OMRÅDEPOLYGONER
@@ -454,8 +500,8 @@
           [59.8774342123408,8.59034748831503],],
            {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).on('click', function() {
             $slider.setAttribute('class', 'slide-in');
-            document.getElementById('slider').innerHTML =
-            "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><center><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg'></center><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg'><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
           });
 
         var polygon = L.polygon([
@@ -478,8 +524,8 @@
             [59.8777907037286,8.59078209648841],],
              {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
                   $slider.setAttribute('class', 'slide-in');
-                  document.getElementById('slider').innerHTML =
-                  "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><center><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg'></center><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
+                  document.getElementById('slidercontent').innerHTML =
+                  "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style = 'width: 350px;'><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
             });
       </script>
       <script>
