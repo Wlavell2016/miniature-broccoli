@@ -111,8 +111,14 @@
         padding-bottom: 50px;
       }
 
-      #slider img {border: 5px solid #292929; margin: 10px;
- outline: 5px solid #e3e3e3;}
+      #slider img {
+        border: 5px solid #292929;
+         margin: 10px;
+         outline: 5px solid #e3e3e3;}
+
+      
+
+
 
 
 
@@ -492,16 +498,110 @@
           });
 
         // OMRÅDEPOLYGONER
+        // Elevheimen og lærerboligen
+        var polygon = L.polygon([
+          [59.87769,8.58789],
+          [59.87734,8.59023],
+          [59.8784,8.5897],
+          [59.87839,8.58933],],
+           {weight: 1, color: 'grey', fillColor:'pink'}).addTo(verdensarvkart).on('click', function() {
+
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>Elevheimen og lærerboligen</h1>";$slider.setAttribute('class', 'slide-in');
+          });
+        // Jernbaneplassen
+        var polygon = L.polygon([
+          [59.87673,8.58502],
+          [59.87656,8.58611],
+          [59.8771,8.58669],
+          [59.87726,8.58542],],
+           {weight: 1, color: 'grey', fillColor:'pink'}).addTo(verdensarvkart).on('click', function() {
+
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>Jernbaneplassen</h1>";$slider.setAttribute('class', 'slide-in');
+          });
+        // Melandstangen
+        var polygon = L.polygon([
+          [59.8773,8.59516],
+          [59.87766,8.59692],
+          [59.87792,8.59659],
+          [59.8778,8.59568],[59.87758,8.595],],
+           {weight: 1, color: 'grey', fillColor:'brown'}).addTo(verdensarvkart).on('click', function() {
+
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>Melandstangen</h1>";$slider.setAttribute('class', 'slide-in');
+          });
+
+        // Torget
+        var polygon = L.polygon([
+          [59.8785,8.59491],
+          [59.87825,8.59403],
+          [59.87835,8.5934],
+          [59.87882,8.59333],[59.87891,8.59479],],
+           {weight: 1, color: 'grey', fillColor:'green'}).addTo(verdensarvkart).on('click', function() {
+
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>Torget</h1>";$slider.setAttribute('class', 'slide-in');
+          });
+
+        // Nybyen vest
+
+        var polygon = L.polygon([
+          [59.87844,8.59701],
+          [59.87823,8.5949],
+          [59.87887,8.59488],
+          [59.87897,8.59643],[59.87863,8.59655],
+          [59.87869,8.59692],],
+           {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).on('click', function() {
+
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>Nybyen</h1>";$slider.setAttribute('class', 'slide-in');
+          });
+
+          // Nybyen øst
+          var polygon = L.polygon([
+            [59.87864,8.5979],
+            [59.87959,8.59789],
+            [59.87967,8.60532],
+            [59.87949,8.60531],[59.87931,8.60291],
+            [59.87925,8.60074],[59.87889,8.60029],],
+             {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).on('click', function() {
+
+              document.getElementById('slidercontent').innerHTML =
+              "<h1>Nybyen</h1>";$slider.setAttribute('class', 'slide-in');
+            });
+
+        // Tyskerbyen
+        var polygon = L.polygon([
+          [59.87814,8.59371],
+          [59.87797,8.59422],
+          [59.87761,8.5931],
+          [59.87743,8.59154],[59.87763,8.59119],
+          [59.87826,8.59089],
+          [59.87878,8.59047],
+          [59.87907,8.59295],
+          [59.87891,8.59301],
+          [59.87882,8.59306],
+          [59.87883,8.5933],[59.87834,8.59317],],
+           {weight: 1, color: 'grey', fillColor:'black'}).addTo(verdensarvkart).on('click', function() {
+
+            document.getElementById('slidercontent').innerHTML =
+            "<h1>Tyskerbyen</h1><p>over Sam Eydes gate";$slider.setAttribute('class', 'slide-in');
+          });
+
+
+
         // Rødbyen
         var polygon = L.polygon([
           [59.8775290413323,8.59115863970161],
           [59.8782010092891,8.59082074676582],
           [59.878106178211,8.59000957998899],
           [59.8774342123408,8.59034748831503],],
-           {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).on('click', function() {
-            $slider.setAttribute('class', 'slide-in');
+           {weight: 1, color: 'grey', fillColor:'red'}).addTo(verdensarvkart).on('click', function() {
+
             document.getElementById('slidercontent').innerHTML =
-            "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg'><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
+            "<h1>RØDBYEN..</h1><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style='max-width:350px; height:auto; float:left;'><p>Hustypene i rødbyen er av type J1.</p><p>Plasseringen av bebyggelsen i Rødbyen er strengt organisert. I nord-syd-retning er bebyggelsen speilvendt omkring en akse midt gjennom kvartalene. De seks nederste bygningene ligger med eksakt samme avstand seg i mellom.<a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
+            $slider.setAttribute('class', 'slide-in');
           });
 
         var polygon = L.polygon([
@@ -509,9 +609,7 @@
             [59.8781896836314,8.58997932807604],
             [59.8783911052581,8.58986727601919],
             [59.8784859365,8.59067844474]
-          ], {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
-
-
+          ], {weight: 1, color: 'grey', fillColor:'red'}).addTo(verdensarvkart);
 
         var polygon = L.polygon([
           [59.8778232371038,8.59076490571667],
@@ -536,6 +634,7 @@
         });
 
         function toggle() {
+          document.getElementById('slidercontent').innerHTML = "";
           var isOpen = $slider.classList.contains('slide-in');
           $slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');}
       </script>
