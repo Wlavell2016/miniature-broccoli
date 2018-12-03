@@ -21,7 +21,7 @@
       }
 
       .content {
-        max-width: 960px;
+        max-width: 1024px;
         margin: auto;
         opacity: 1;
       }
@@ -116,7 +116,7 @@
          margin: 10px;
          outline: 5px solid #e3e3e3;}
 
-      
+
 
 
 
@@ -576,7 +576,8 @@
           [59.87814,8.59371],
           [59.87797,8.59422],
           [59.87761,8.5931],
-          [59.87743,8.59154],[59.87763,8.59119],
+          [59.87743,8.59154],
+          [59.87763,8.59119],
           [59.87826,8.59089],
           [59.87878,8.59047],
           [59.87907,8.59295],
@@ -600,7 +601,7 @@
            {weight: 1, color: 'grey', fillColor:'red'}).addTo(verdensarvkart).on('click', function() {
 
             document.getElementById('slidercontent').innerHTML =
-            "<h1>RØDBYEN..</h1><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style='max-width:350px; height:auto; float:left;'><p>Hustypene i rødbyen er av type J1.</p><p>Plasseringen av bebyggelsen i Rødbyen er strengt organisert. I nord-syd-retning er bebyggelsen speilvendt omkring en akse midt gjennom kvartalene. De seks nederste bygningene ligger med eksakt samme avstand seg i mellom.<a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
+            "<div style='display:block;border:1px solid lime;overflow: hidden;'><h1>RØDBYEN...</h1><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style='width: 350px;max-width:100%; height:auto; float:right;'><p>Hustypene i rødbyen er av type J1.</p><p>Plasseringen av bebyggelsen i Rødbyen er strengt organisert. I nord-syd-retning er bebyggelsen speilvendt omkring en akse midt gjennom kvartalene. De seks nederste bygningene ligger med eksakt samme avstand seg i mellom.</div></p><p><div class='row' style='white-space: nowrap;display:block;border: 1px solid lime;overflow:hidden;'><img src = 'assets/img/rodbyen/bebyggelsesstruktur_rodbyen.jpg' style='height: 380px;max-width:100%; height:auto; float:right;'><img src = 'assets/img/rodbyen/bebyggelsesstruktur_rodbyen3.jpg' style='height:380px; max-width:100%; height:auto; float:left;></div></p><p><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a></p>";
             $slider.setAttribute('class', 'slide-in');
           });
 
@@ -623,7 +624,7 @@
              {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
                   $slider.setAttribute('class', 'slide-in');
                   document.getElementById('slidercontent').innerHTML =
-                  "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style = 'width: 350px;'><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om Rødbyen</a>";
+                  "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><p><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style = 'width: 350px;'><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'></p><p>Les mer om Rødbyen</a>";
             });
       </script>
       <script>
@@ -634,7 +635,6 @@
         });
 
         function toggle() {
-          document.getElementById('slidercontent').innerHTML = "";
           var isOpen = $slider.classList.contains('slide-in');
           $slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');}
       </script>
