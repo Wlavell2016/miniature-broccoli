@@ -1,7 +1,13 @@
 // Add leaflet-data
-//Legg til leafletdata
+// Legg til leafletdata
 
+// City-planning / Structures
+// Byplanlegging, linjer og strukturer
 
+// Åsmund Vinjes gate
+  var imageUrl = 'assets/img/structures/struktur_vinjesgt_georef_trans.png',
+  imageBounds = [[59.878831848, 8.62540734785], [59.8801751927, 8.62802859585]];
+  L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
 
 //  Building-polygons
 //  BYGNINGSPOLYGONER

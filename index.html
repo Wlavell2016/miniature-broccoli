@@ -39,6 +39,8 @@
         var verdensarvkart= L.map('mapid').setView([59.878902, 8.596115632658332], 17);
 
         // Baselayer | Alternative layer: matrikkel_bakgrunn
+        // In the following implementation first the quicker WMTS is loaded,
+        // then the slower WMS is loaded: https://www.norgeibilder.no/?x=141784&y=6655207&level=17&utm=33&projects=704&layers=&planned=0
         // Bakgrunnskart | Alternativt kartlag: matrikkel_bakgrunn
         L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
                   attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
