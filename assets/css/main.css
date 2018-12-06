@@ -17,7 +17,8 @@
   }
 
   p, h1 {
-    margin-left:10px;margin-right:10px;
+    margin-left:10px;
+    margin-right:10px;
   }
 
   a {
@@ -40,7 +41,8 @@
 
   #logo-image {
     max-height: 45px;
-    margin-right: 8px;margin-top:7px;
+    margin-right: 8px;
+    margin-top:7px;
     margin-left: 8px;
     display:inline-block;
     top: 7px;

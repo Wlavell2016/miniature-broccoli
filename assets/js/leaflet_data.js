@@ -10,9 +10,14 @@
   L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
 
   // Krysset Mæls gate / Sam Eydes gate
-    var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans.png',
-    imageBounds = [[59.8777244318, 8.61450173237], [59.880518028, 8.62244211736]];
-    L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
+  // var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans2.png',
+  // imageBounds = [[59.8777244318, 8.61450173237], [59.880518028, 8.62244211736]];
+  // L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
+
+  // Krysset Mæls gate / Sam Eydes gate, small version
+  var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans4.png',
+  imageBounds = [[59.8792427025, 8.61799000085], [59.8797714851, 8.61921730015]];
+  L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
 
 //  Building-polygons
 //  BYGNINGSPOLYGONER
@@ -356,25 +361,27 @@
 //      });
 
 //  // Tyskerbyen
-//  var polygon = L.polygon([
-//    [59.87814,8.59371],
-//    [59.87797,8.59422],
-//    [59.87761,8.5931],
-//    [59.87743,8.59154],
-//    [59.87763,8.59119],
-//    [59.87826,8.59089],
-//    [59.87878,8.59047],
-//    [59.87907,8.59295],
-//    [59.87891,8.59301],
-//    [59.87882,8.59306],
-//    [59.87883,8.5933],[59.87834,8.59317],],
-//     {weight: 1, color: 'grey', fillColor:'black'}).addTo(verdensarvkart).on('click', function() {
+// [59.87857,8.59054],
+// [59.87896,8.59416],
+// [59.87916,8.59409],
+// [59.87878,8.59044],],
+  var polygon = L.polygon([
+    [59.87814,8.59371],
+    [59.87797,8.59422],
+    [59.87761,8.5931],
+    [59.87743,8.59154],
+    [59.87763,8.59119],
+    [59.87826,8.59089],
+    [59.87878,8.59047],
+    [59.87907,8.59295],
+    [59.87891,8.59301],
+    [59.87882,8.59306],
+    [59.87883,8.5933],[59.87834,8.59317],],
+     {weight: 1, color: 'grey', fillColor:'black'}).addTo(verdensarvkart).on('click', function() {
 
-//      document.getElementById('slidercontent').innerHTML =
-//      "<h1>Tyskerbyen</h1><p>over Sam Eydes gate";$slider.setAttribute('class', 'slide-in');
-//    });
-
-
+      document.getElementById('slidercontent').innerHTML =
+      "<h1>Tyskerbyen</h1><p>over Sam Eydes gate";$slider.setAttribute('class', 'slide-in');
+    });
 
 // Rødbyen
 var polygon = L.polygon([
