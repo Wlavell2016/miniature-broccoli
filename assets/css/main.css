@@ -4,6 +4,7 @@
     -moz-osx-font-smoothing: grayscale;
     font-smooth: auto;
     text-rendering: optimizeLegibility;
+    margin:0;
   }
 
   .content {
@@ -51,6 +52,7 @@
 
   #mapid {
     height: 100vh;
+    z-index: 1;
   }
 
   #header {
@@ -59,7 +61,7 @@
     left:0;
     height: 60px;
     width: 100%;
-    z-index:1000000;
+    z-index:10;
     background: rgba(35,35,35,.8);
     box-shadow: 2px 2px 5px #888;
     font-family: "Lato", sans-serif;
