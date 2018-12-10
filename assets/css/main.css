@@ -4,7 +4,7 @@
     -moz-osx-font-smoothing: grayscale;
     font-smooth: auto;
     text-rendering: optimizeLegibility;
-    margin:0;
+    margin: 0;
   }
 
   .content {
@@ -97,11 +97,17 @@
     position: fixed;
     top: 62px;
     right: 0px;
-    z-index: 1001;
+    z-index: 2;
     text-transform: uppercase;
     transform: translateY(-100%) translateY(-62px);
     -webkit-transform: translateY(-100%) translateY(-62px);
     padding-bottom: 50px;
+    /* Slider-contents need to be loaded, before slider starts */
+    /* translateY(-100%) translateY(-62px); seems to work well in browsers
+    other than Microsoft Edge. How to fix? */
+    /* Trying to make the slider drop down to the bottom of the page using
+    padding-bottom: 100vh;
+    causes the slider to be displayed when resizing the window. How to fix ?*/
   }
 
   #slider img {
