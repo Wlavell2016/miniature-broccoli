@@ -7,15 +7,7 @@
     margin: 0;
   }
 
-  .content {
-    max-width: 1024px;
-    margin: auto;
-    opacity: 1;
-  }
-
-  #slidercontent {
-    background: #fff;
-  }
+  
 
   p, h1 {
     margin-left:10px;
@@ -91,20 +83,49 @@
 
   #slider {
     width: 100%;
-    min-height: 100vh; /* Important, simply setting 'height: 100vh;' does not work well */
+    height: 100vh; 
     color: #333;
-    background: rgba(35,35,35,.1);
+    background: rgba(35,35,35,.2);
     position: fixed;
-    top: 62px;
+    top: 0px;
     right: 0px;
+    overflow-y: scroll;
+    touch-action: pan-y; /* Necessary to allow pan on touch-screens */
     z-index: 2;
     text-transform: uppercase;
     transform: translateY(-100%) translateY(-62px);
     -webkit-transform: translateY(-100%) translateY(-62px);
-    padding-bottom: 50px;
-    /* Slider-contents need to be loaded, before slider starts */
-    /* translateY(-100%) translateY(-62px); seems to work well in browsers
-    other than Microsoft Edge. How to fix? */
+    border-bottom:3px solid pink; box-sizing: border-box; /* Making bottom of slider visible during development */
+    /* Todo: Slider-contents need to be loaded, before slider starts */
+    cursor: grab;
+    cursor : -o-grab;
+    cursor : -moz-grab;
+    cursor : -webkit-grab;
+  }
+
+  .content {
+    /*max-width: 1024px;*/
+    width: 75%;
+    margin: auto;
+    opacity: 1;
+  }
+
+  @media only screen and (max-width: 768px) {
+  /* For mobile phones: */  
+  .content{
+    width: 100%;  
+  }
+  }
+
+  #slidercontent {
+    background: #fff;
+    display: block;
+    margin-top: 62px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: hidden; /* Necessary to expand the containing div ? */
   }
 
   #slider img {

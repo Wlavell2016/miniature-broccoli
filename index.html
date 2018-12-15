@@ -12,9 +12,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
 
-      <!-- Adding leaflet JS after Leaflet CSS -->
-      <!-- Laster leaflet JS etter Leaflet CSS -->
-      <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+    <!-- Adding leaflet JS after Leaflet CSS -->
+    <!-- Laster leaflet JS etter Leaflet CSS -->
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
 
   </head>
 
@@ -27,9 +28,10 @@
     </header>
       <div id = "mapid">
       </div>
-      <div id = "slider">
+      <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab;">
         <div id = "slidercontent" class="content" >
         </div>
+        <div style="clear: both;"> </div>
       </div>
 
       <!-- Javascript -->
@@ -58,15 +60,12 @@
 
       <!-- Slider-functionality -->
       <!-- Slider-funksjonalitet -->
-      <script>
-        var $slider = document.getElementById('slider');
-        $slider.addEventListener('click', function() {
-          toggle();
-        });
-        function toggle() {
-          var isOpen = $slider.classList.contains('slide-in');
-          $slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');}
+      <script src="assets/js/slider.js">
       </script>
+      <!-- Hide scrollbar 
+      <script>
+      document.getElementById('slider').style.right = parent.clientWidth - parent.offsetWidth + "px";
+      </script>-->
 
   </body>
 </html>
