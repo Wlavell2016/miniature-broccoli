@@ -24,45 +24,45 @@
             <p id = "tittelnavn" >verdensarvbyen rjukan</p>
       </div>
     </header>
-      <div id = "mapid">
+    <div id = "mapid">
+    </div>
+    <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab;">
+      <div id = "slidercontent" class="content" >
       </div>
-      <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab;">
-        <div id = "slidercontent" class="content" >
-        </div>
-      </div>
+    </div>
 
-      <!-- Javascript -->
+    <!-- Javascript -->
 
-      <script>
-        // Initializing map and centering in the city
-        // Initialiser verdensarvkartinstans og sentrer i Rjukan sentrum
-        var verdensarvkart= L.map('mapid').setView([59.878902, 8.596115632658332], 17);
+    <script>
+      // Initializing map and centering in the city
+      // Initialiser verdensarvkartinstans og sentrer i Rjukan sentrum
+      var verdensarvkart= L.map('mapid').setView([59.878902, 8.596115632658332], 17);
 
-        // Baselayer | Alternative layer: matrikkel_bakgrunn
-        // In the following implementation first the quicker WMTS is loaded,
-        // then the slower WMS is loaded: https://www.norgeibilder.no/?x=141784&y=6655207&level=17&utm=33&projects=704&layers=&planned=0
-        // Bakgrunnskart | Alternativt kartlag: matrikkel_bakgrunn
-        L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
-                  attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
-              }).addTo(verdensarvkart);
+      // Baselayer | Alternative layer: matrikkel_bakgrunn
+      // In the following implementation first the quicker WMTS is loaded,
+      // then the slower WMS is loaded: https://www.norgeibilder.no/?x=141784&y=6655207&level=17&utm=33&projects=704&layers=&planned=0
+      // Bakgrunnskart | Alternativt kartlag: matrikkel_bakgrunn
+      L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
+        attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
+      }).addTo(verdensarvkart);
 
-      </script>
+    </script>
 
-      <!-- Check for presence of mobile unit and add location-point, if relevant -->
-      <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
-      <script src="assets/js/mobile.js"></script>
+    <!-- Check for presence of mobile unit and add location-point, if relevant -->
+    <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
+    <script src="assets/js/mobile.js"></script>
 
-      <!-- Add leaflet-data  /  Legg til leafletdata -->
-      <script src="assets/js/leaflet_data.js"></script>
+    <!-- Add leaflet-data  /  Legg til leafletdata -->
+    <script src="assets/js/leaflet_data.js"></script>
 
-      <!-- Slider-functionality -->
-      <!-- Slider-funksjonalitet -->
-      <script src="assets/js/slider.js">
-      </script>
-      <!-- Hide scrollbar 
-      <script>
-      document.getElementById('slider').style.right = parent.clientWidth - parent.offsetWidth + "px";
-      </script>-->
+    <!-- Slider-functionality -->
+    <!-- Slider-funksjonalitet -->
+    <script src="assets/js/slider.js">
+    </script>
+    <!-- Hide scrollbar 
+    <script>
+    document.getElementById('slider').style.right = parent.clientWidth - parent.offsetWidth + "px";
+    </script>-->
 
   </body>
 </html>
