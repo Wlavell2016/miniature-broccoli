@@ -55,7 +55,7 @@
     z-index:10;
     background: rgba(35,35,35,.8);
     box-shadow: 2px 2px 5px #888;
-    font-family: "Lato", sans-serif;
+    font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
     letter-spacing:-0.5px;
