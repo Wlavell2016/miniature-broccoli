@@ -92,6 +92,7 @@
 
   #slider {
     width: 100%;
+    min-height: 100vh; /* Important, simply setting 'height: 100vh;' does not work well */
     color: #333;
     background: rgba(35,35,35,.1);
     position: fixed;
@@ -105,9 +106,6 @@
     /* Slider-contents need to be loaded, before slider starts */
     /* translateY(-100%) translateY(-62px); seems to work well in browsers
     other than Microsoft Edge. How to fix? */
-    /* Trying to make the slider drop down to the bottom of the page using
-    padding-bottom: 100vh;
-    causes the slider to be displayed when resizing the window. How to fix ?*/
   }
 
   #slider img {
