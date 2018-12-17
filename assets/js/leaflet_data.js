@@ -392,7 +392,7 @@ var polygon = L.polygon([
    {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
           
          $('#sliderframe').attr('src', 'assets/descriptions/rodbyen2.htm').on('load', function(){$slider.setAttribute('class', 'slide-in');
-          document.getElementById("mapid").focus();});
+         $('#mapid').focus();});
          
 
          
@@ -407,7 +407,7 @@ var polygon = L.polygon([
   ], {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
           
          $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.htm').on('load', function(){$slider.setAttribute('class', 'slide-in');
-          document.getElementById("mapid").focus();});
+         $('#mapid').focus();});
          
 
          
@@ -426,7 +426,7 @@ var polygon = L.polygon([
      {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
           
          $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.htm').on('load', function(){$slider.setAttribute('class', 'slide-in');
-          document.getElementById("mapid").focus();});
+         $('#mapid').focus();});
          
 
          
