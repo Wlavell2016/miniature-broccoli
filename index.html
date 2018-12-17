@@ -26,12 +26,26 @@
     </header>
     <div id = "mapid">
     </div>
-    <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab;">
-      <div id = "slidercontent" class="content" >
-      </div>
+    <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab; overflow-y:hidden;" >
+      <iframe id = "sliderframe" src="assets/descriptions/rodbyen.htm" style="width:100%;height:101%; border:0; background-color: #fff; border:0; margin: 0; padding:0;margin-top:62px;" ></iframe>
     </div>
 
     <!-- Javascript -->
+    <script >
+      $('#sliderframe').on('load', function(){
+        var iframe = $('#sliderframe').contents();
+        iframe.find("body").mousedown(function(){    
+          startTime = new Date().getTime();
+        });
+        iframe.find("body").mouseup(function(){
+          endTime = new Date().getTime();
+          if (endTime - startTime < 250) {
+            toggle()
+          } 
+        });
+      });
+    </script>
+
     <script>
       // Initializing map and centering in the city
       // Initialiser verdensarvkartinstans og sentrer i Rjukan sentrum

@@ -11,6 +11,7 @@ function toggle() {
     Detect duration of mouse-click. 
     Toggle slider if quick click. 
     If slow click do not do anything. */
+
 $(document).ready(function () {
     var longpress = false;      
     
