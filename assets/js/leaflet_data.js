@@ -391,7 +391,7 @@ var polygon = L.polygon([
   [59.8774342123408,8.59034748831503],],
    {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
           
-         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen2.htm').on('load', function(){$slider.setAttribute('class', 'slide-in');
+         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
          $('#mapid').focus();});
          
 
@@ -406,7 +406,7 @@ var polygon = L.polygon([
     [59.8784859365,8.59067844474]
   ], {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
           
-         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.htm').on('load', function(){$slider.setAttribute('class', 'slide-in');
+         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
          $('#mapid').focus();});
          
 
@@ -425,7 +425,7 @@ var polygon = L.polygon([
     [59.8777907037286,8.59078209648841],],
      {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
           
-         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.htm').on('load', function(){$slider.setAttribute('class', 'slide-in');
+         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
          $('#mapid').focus();});
          
 

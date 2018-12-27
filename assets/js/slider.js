@@ -10,7 +10,7 @@ function toggle() {
 /* To allow scrolling of the slider with mouse-dragging: 
     Detect duration of mouse-click. 
     Toggle slider if quick click. 
-    If slow click do not do anything. */
+    If slow click do not do anything. 
 
 $(document).ready(function () {
     var longpress = false;      
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     });
 });
-
+*/
 
 /* Make scrollable area draggable by mouse */
 
