@@ -389,19 +389,30 @@ var polygon = L.polygon([
   [59.8782010092891,8.59082074676582],
   [59.878106178211,8.59000957998899],
   [59.8774342123408,8.59034748831503],],
-   {weight: 1, color: 'grey', fillColor:'red'}).addTo(verdensarvkart).on('click', function() {
+   {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
+          
+         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
+         $('#mapid').focus();});
+         
 
-    document.getElementById('slidercontent').innerHTML =
-    "<p><h1>RØDBYEN...</h1><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style='max-width:100%; height:auto; float:right;'></p><p>Hustypene i rødbyen er av type J1.</p><p>Plasseringen av bebyggelsen i Rødbyen er strengt organisert. I nord-syd-retning er bebyggelsen speilvendt omkring en akse midt gjennom kvartalene. De seks nederste bygningene ligger med eksakt samme //avstand seg i mellom.</p><p><img src = 'assets/img/rodbyen/bebyggelsesstruktur_rodbyen.jpg' style='height: auto;max-width:100%; height:auto; float:right;'><img src = 'assets/img/rodbyen/bebyggelsesstruktur_rodbyen3.jpg' style='height:auto; max-width:350px; height:auto; float:left;></p><p><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'>Les mer om //Rødbyen</a></p>";
-    $slider.setAttribute('class', 'slide-in');
-  });
+         
+
+       });
 
 var polygon = L.polygon([
     [59.8782845148965,8.59079049679921],
     [59.8781896836314,8.58997932807604],
     [59.8783911052581,8.58986727601919],
     [59.8784859365,8.59067844474]
-  ], {weight: 1, color: 'grey', fillColor:'red'}).addTo(verdensarvkart);
+  ], {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
+          
+         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
+         $('#mapid').focus();});
+         
+
+         
+
+       });
 
 var polygon = L.polygon([
   [59.8778232371038,8.59076490571667],
@@ -413,7 +424,11 @@ var polygon = L.polygon([
     [59.8778108362738,8.5909326103945],
     [59.8777907037286,8.59078209648841],],
      {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
-          $slider.setAttribute('class', 'slide-in');
-          document.getElementById('slidercontent').innerHTML =
-          "<h1>RØDBYEN</h1><p>Professor Tronstad gate 2.</p><p><img src='http://www.perberntsen.com/_commercial/rjukan-notodden/rju_2013-05-07_146.jpg' style = 'width: 350px;'><a href='http://www.tinn-kommune.com/Arkitektur/Delrapport_Rjukan_red.pdf'></p><p>Les mer om Rødbyen</a>";
-    });
+          
+         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
+         $('#mapid').focus();});
+         
+
+         
+
+       });
