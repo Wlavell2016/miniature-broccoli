@@ -18,6 +18,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
         <script src="assets/js/Houses.js"></script>
+        <script src="assets/js/Boundaries.js"></script>
 
     <!-- Jquery -->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
@@ -62,16 +63,29 @@
       opacity: 1,
       fillOpacity: 0.8
     };
-    var myStyle = {
-      "color": "#ff7800",
-      "weight": 5,
+
+    var blue = {
+      "color": "#4286f4",
+      "weight": 3,
+      "opacity": 0.65
+    };
+
+    var orange = {
+      "color": "#e2b03b",
+      "weight": 3,
+      "opacity": 0.65
+    };
+
+    var pink = {
+      "color": "#c33ae2",
+      "weight": 3,
       "opacity": 0.65
     };
       // Initializing map and centering in the city
-      // Initialiser verdensarvkartinstans og sentrer i Rjukan sentrum
-      var verdensarvkart= L.map('mapid',{
+      // Initialiser mapinstans og sentrer i Rjukan sentrum
+      var map = L.map('mapid',{
         zoomControl: false,
-      }).setView([59.878902, 8.596115632658332], 17);
+      }).setView([59.88011364706956, 8.605479290708901], 16);
 
       // Baselayer | Alternative layer: matrikkel_bakgrunn
       // In the following implementation first the quicker WMTS is loaded,
@@ -80,18 +94,32 @@
       var key ='673B1E78E90DBCB2AD3D4C3E22D94B352D42FB9C02F7ED5F3FD70AD56C53A966F1A6EFDECCD090EFFC247FD9D054D1D39A908F0B6FBF60A28D018F0853CD0DA1'
       L.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
         attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
-      }).addTo(verdensarvkart);
+      }).addTo(map);
 
+      map.on('click',function() {
+          var center = map.getCenter()
+          console.log(center)
+      });
+
+      L.geoJSON(area, {
+      style: function(feature) {
+          switch (feature.properties.Type) {
+              case 'Pink': return {color: '#c33ae2'};
+              case 'Blue':   return {color: '#4286f4'};
+              case 'Orange':   return {color: '#e2b03b'};
+          }
+      }
+      }).addTo(map);
 
       L.control.zoom({
         position:'bottomleft'
-      }).addTo(verdensarvkart)
+      }).addTo(map)
 
       L.geoJSON(points, {
       pointToLayer: function (points, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
       }
-      }).addTo(verdensarvkart);
+    }).addTo(map);
 
     </script>
 

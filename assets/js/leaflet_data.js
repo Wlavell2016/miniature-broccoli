@@ -7,17 +7,17 @@
 // Åsmund Vinjes gate
   var imageUrl = 'assets/img/structures/struktur_vinjesgt_georef_trans.png',
   imageBounds = [[59.878831848, 8.62540734785], [59.8801751927, 8.62802859585]];
-  L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
   // Krysset Mæls gate / Sam Eydes gate
   // var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans2.png',
   // imageBounds = [[59.8777244318, 8.61450173237], [59.880518028, 8.62244211736]];
-  // L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
+  // L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
   // Krysset Mæls gate / Sam Eydes gate, small version
   var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans4.png',
   imageBounds = [[59.8792427025, 8.61799000085], [59.8797714851, 8.61921730015]];
-  L.imageOverlay(imageUrl, imageBounds).addTo(verdensarvkart);
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
 //  Building-polygons
 //  BYGNINGSPOLYGONER
@@ -59,7 +59,7 @@
 //      [59.8708457688295,8.4922248074964],
 //      [59.870844657071,8.49209945355091],
 //      [59.8709854560898,8.4920944490675],
-//    ], {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).bindPopup("Vemork");
+//    ], {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map).bindPopup("Vemork");
 
 //// Våer 1 - Direktørboligen
 //  var polygon = L.polygon([
@@ -71,7 +71,7 @@
 //      [59.876358695346,8.49845248250769],
 //      [59.8763990872145,8.4982594996353],
 //      [59.8764454604981,8.49829791891419],],
-//       {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//       {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer - 137/67
 //  var polygon = L.polygon([
@@ -85,7 +85,7 @@
 //    [59.876242321458,8.49838689554999],
 //    [59.8762305794912,8.49841136471678],
 //    [59.8761121228107,8.49819969903678],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 3
 //  var polygon = L.polygon([
@@ -98,7 +98,7 @@
 //    [59.8760437881077,8.49807712453114],
 //    [59.876004945263,8.49808967743209],
 //    [59.8759926988266,8.49793928657597],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 4
 //  var polygon = L.polygon([
@@ -116,7 +116,7 @@
 //    [59.8758428775505,8.49776346345417],
 //    [59.8758574833794,8.49775770602084],
 //    [59.8758493625922,8.49767441399369],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 5
 //  var polygon = L.polygon([
@@ -128,7 +128,7 @@
 //    [59.8760302042325,8.49713332916438],
 //    [59.8759626347458,8.49721151265788],
 //    [59.8759083116867,8.49702657001481],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 6
 //  var polygon = L.polygon([
@@ -140,7 +140,7 @@
 //    [59.8759455888007,8.49684149427343],
 //    [59.8758778301301,8.49692182443462],
 //    [59.8758214278313,8.49673334179994],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 11
 //  var polygon = L.polygon([
@@ -158,7 +158,7 @@
 //    [59.8754980136624,8.49558847871639],
 //    [59.8754645816172,8.49562810195271],
 //    [59.8754248315521,8.49549509957109],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 15
 //  var polygon = L.polygon([
@@ -166,7 +166,7 @@
 //    [59.8759255485956,8.49538391522615],
 //    [59.875844611191,8.49542032938785],
 //    [59.875811999262,8.49513485672534],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 18
 //  var polygon = L.polygon([
@@ -174,7 +174,7 @@
 //    [59.8761932870805,8.49970566825152],
 //    [59.8762979497619,8.49988450219822],
 //    [59.8762401714723,8.50001844171291],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 19
 //  var polygon = L.polygon([
@@ -182,7 +182,7 @@
 //    [59.8761331602144,8.49959940000416],
 //    [59.8760748695633,8.49973549047673],
 //    [59.8759692266007,8.49955631568555],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 20
 //  var polygon = L.polygon([
@@ -190,7 +190,7 @@
 //    [59.8759665057924,8.49931522175216],
 //    [59.8759082011844,8.49944756127276],
 //    [59.8758041389837,8.49926622110585],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 21
 //  var polygon = L.polygon([
@@ -198,7 +198,7 @@
 //    [59.8758016211468,8.49902905491773],
 //    [59.875743587555,8.49916174744387],
 //    [59.8756277062838,8.49896111767139],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  // Våer 22
 //  var polygon = L.polygon([
@@ -207,35 +207,35 @@
 //    [59.8755678666783,8.49885734886665],
 //    [59.8754503687071,8.49865674554314],
 //    [59.8754503687071,8.49865674554314],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart);
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map);
 
 //  var polygon = L.polygon([
 //    [59.878778, 8.595046419904585],
 //    [59.878688, 8.595081802602891],
 //    [59.878716, 8.595356204986005],
 //    [59.878805, 8.595320823211681],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878729, 8.595477698387103],
 //    [59.878817, 8.595442500896066],
 //    [59.878845, 8.595716546299636],
 //    [59.878756, 8.595751744179731],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878786, 8.59587356560656],
 //    [59.878813, 8.59615011960532],
 //    [59.878902, 8.596115632658332],
 //    [59.878875, 8.595839256681824],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878591, 8.596866619665943],
 //    [59.878498, 8.596901095252915],
 //    [59.878476, 8.596627937182647],
 //    [59.878564, 8.596593460789193],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878524, 8.596479261442695],
@@ -246,28 +246,28 @@
 //    [59.878436, 8.59651301718321],
 //    [59.87841, 8.59623771420118],
 //    [59.878498, 8.596203957869674],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878484, 8.596063545146941],
 //    [59.878395, 8.596098024062508],
 //    [59.878368, 8.595823797749741],
 //    [59.878457, 8.595789139618016],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878374, 8.595691541065466],
 //    [59.878462, 8.595656354445587],
 //    [59.878434, 8.595382670582385],
 //    [59.878346, 8.595417857895555],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  var polygon = L.polygon([
 //    [59.878422, 8.595256889139532],
 //    [59.878333, 8.59529118496481],
 //    [59.878307, 8.59501945508418],
 //    [59.878395, 8.594985337191646],],
-//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(verdensarvkart).bindPopup("Type O");
+//     {weight: 1, color: 'grey', fillColor: 'blue'}).addTo(map).bindPopup("Type O");
 
 //  // Torget
 //  var polygon = L.polygon([
@@ -275,13 +275,13 @@
 //    [59.878491, 8.593787517988031],
 //    [59.878472, 8.593523915838876],
 //    [59.878745, 8.59344806059727],],
-//     {weight: 1, fillColor: 'green', color: 'grey'}).addTo(verdensarvkart).bindPopup("Torget 1").on('click', function() {document.getElementById('slidercontent').style.visibility = 'visible';});
+//     {weight: 1, fillColor: 'green', color: 'grey'}).addTo(map).bindPopup("Torget 1").on('click', function() {document.getElementById('slidercontent').style.visibility = 'visible';});
 //  var polygon = L.polygon([
 //    [59.878551, 8.594595452685641],
 //    [59.87857, 8.594857631245073],
 //    [59.878849, 8.594777960266231],
 //    [59.87883, 8.594515779447217],],
-//     {weight: 1, fillColor: 'green', color: 'grey'}).addTo(verdensarvkart).bindPopup("Torget 2").on('click', function() {
+//     {weight: 1, fillColor: 'green', color: 'grey'}).addTo(map).bindPopup("Torget 2").on('click', function() {
 //      $slider.setAttribute('class', 'slide-in');
 //      document.getElementById('slidercontent').innerHTML = " ";
 //    });
@@ -293,7 +293,7 @@
 //    [59.87734,8.59023],
 //    [59.8784,8.5897],
 //    [59.87839,8.58933],],
-//     {weight: 1, color: 'grey', fillColor:'pink'}).addTo(verdensarvkart).on('click', function() {
+//     {weight: 1, color: 'grey', fillColor:'pink'}).addTo(map).on('click', function() {
 
 //      document.getElementById('slidercontent').innerHTML =
 //      "<h1>Elevheimen og lærerboligen</h1>";$slider.setAttribute('class', 'slide-in');
@@ -304,7 +304,7 @@
 //    [59.87656,8.58611],
 //    [59.8771,8.58669],
 //    [59.87726,8.58542],],
-//     {weight: 1, color: 'grey', fillColor:'pink'}).addTo(verdensarvkart).on('click', function() {
+//     {weight: 1, color: 'grey', fillColor:'pink'}).addTo(map).on('click', function() {
 
 //      document.getElementById('slidercontent').innerHTML =
 //      "<h1>Jernbaneplassen</h1>";$slider.setAttribute('class', 'slide-in');
@@ -315,7 +315,7 @@
 //    [59.87766,8.59692],
 //    [59.87792,8.59659],
 //    [59.8778,8.59568],[59.87758,8.595],],
-//     {weight: 1, color: 'grey', fillColor:'brown'}).addTo(verdensarvkart).on('click', function() {
+//     {weight: 1, color: 'grey', fillColor:'brown'}).addTo(map).on('click', function() {
 
 //      document.getElementById('slidercontent').innerHTML =
 //      "<h1>Melandstangen</h1>";$slider.setAttribute('class', 'slide-in');
@@ -327,7 +327,7 @@
 //    [59.87825,8.59403],
 //    [59.87835,8.5934],
 //    [59.87882,8.59333],[59.87891,8.59479],],
-//     {weight: 1, color: 'grey', fillColor:'green'}).addTo(verdensarvkart).on('click', function() {
+//     {weight: 1, color: 'grey', fillColor:'green'}).addTo(map).on('click', function() {
 
 //      document.getElementById('slidercontent').innerHTML =
 //      "<h1>Torget</h1>";$slider.setAttribute('class', 'slide-in');
@@ -341,7 +341,7 @@
 //    [59.87887,8.59488],
 //    [59.87897,8.59643],[59.87863,8.59655],
 //    [59.87869,8.59692],],
-//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).on('click', function() {
+//     {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map).on('click', function() {
 
 //      document.getElementById('slidercontent').innerHTML =
 //      "<h1>Nybyen</h1>";$slider.setAttribute('class', 'slide-in');
@@ -354,7 +354,7 @@
 //      [59.87967,8.60532],
 //      [59.87949,8.60531],[59.87931,8.60291],
 //      [59.87925,8.60074],[59.87889,8.60029],],
-//       {weight: 1, color: 'grey', fillColor:'blue'}).addTo(verdensarvkart).on('click', function() {
+//       {weight: 1, color: 'grey', fillColor:'blue'}).addTo(map).on('click', function() {
 
 //        document.getElementById('slidercontent').innerHTML =
 //        "<h1>Nybyen</h1>";$slider.setAttribute('class', 'slide-in');
@@ -377,7 +377,7 @@
     [59.87891,8.59301],
     [59.87882,8.59306],
     [59.87883,8.5933],[59.87834,8.59317],],
-     {weight: 1, color: 'grey', fillColor:'black'}).addTo(verdensarvkart).on('click', function() {
+     {weight: 1, color: 'grey', fillColor:'black'}).addTo(map).on('click', function() {
 
       document.getElementById('slidercontent').innerHTML =
       "<h1>Tyskerbyen</h1><p>over Sam Eydes gate";$slider.setAttribute('class', 'slide-in');
@@ -389,13 +389,13 @@ var polygon = L.polygon([
   [59.8782010092891,8.59082074676582],
   [59.878106178211,8.59000957998899],
   [59.8774342123408,8.59034748831503],],
-   {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
-          
+   {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(map).on('click', function() {
+
          $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
          $('#mapid').focus();});
-         
 
-         
+
+
 
        });
 
@@ -404,13 +404,13 @@ var polygon = L.polygon([
     [59.8781896836314,8.58997932807604],
     [59.8783911052581,8.58986727601919],
     [59.8784859365,8.59067844474]
-  ], {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
-          
+  ], {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(map).on('click', function() {
+
          $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
          $('#mapid').focus();});
-         
 
-         
+
+
 
        });
 
@@ -423,12 +423,12 @@ var polygon = L.polygon([
     [59.8779147309768,8.59087810300724],
     [59.8778108362738,8.5909326103945],
     [59.8777907037286,8.59078209648841],],
-     {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(verdensarvkart).on('click', function() {
-          
+     {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(map).on('click', function() {
+
          $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
          $('#mapid').focus();});
-         
 
-         
+
+
 
        });
