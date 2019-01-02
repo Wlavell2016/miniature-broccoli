@@ -12,6 +12,24 @@
   // If mobile unit: add location-point.
   // Hvis mobilenhet: legg til lokasjonspunkt
   if (isMobileDevice()) {
+    // Fix for 100vh not working well on mobile units
+    setHeight = function(){
+      $('div#mapid').css('height', $(window).height());
+    }
+    setHeight(); // Call once after page has loaded
+
+    var previousOrientation = window.orientation;
+    var checkOrientation = function(){
+      if(window.orientation !== previousOrientation){
+        previousOrientation = window.orientation;
+        setHeight();
+      }
+    };
+
+    window.addEventListener("resize", setHeight, false);
+    window.addEventListener("orientationchange", checkOrientation, false);
+    //////////////////////////////////////////////////////
+    
     var current_position, current_accuracy;
 
     function onLocationFound(e) {

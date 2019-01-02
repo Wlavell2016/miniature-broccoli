@@ -42,7 +42,7 @@
         }
 
   #mapid {
-    height: 100vh;
+    height: 100vh; /* Does not work well on mobile, see fix in mobile.js */
     z-index: 1;
   }
 
@@ -53,7 +53,7 @@
     height: 60px;
     width: 100%;
     z-index:10;
-    background: rgba(35,35,35,.8);
+    background: rgba(248,248,248, 1);
     box-shadow: 2px 2px 5px #888;
     font-family: Lato, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -93,10 +93,8 @@
     touch-action: pan-y; /* Necessary to allow pan on touch-screens */
     z-index: 2;
     text-transform: uppercase;
-    transform: translateY(-100%) translateY(-62px);
-    -webkit-transform: translateY(-100%) translateY(-62px);
+    
     border-bottom:3px solid pink; box-sizing: border-box; /* Making bottom of slider visible during development */
-    /* Todo: Slider-contents need to be loaded, before slider starts */
     cursor: grab;
     cursor : -o-grab;
     cursor : -moz-grab;
@@ -110,13 +108,29 @@
     opacity: 1;
   }
 
+  #sliderframe {
+    width:100%;
+    height:100%; 
+    border:0; 
+    background-color: #fff; 
+    border:0; 
+    margin: 0; 
+    padding:0;
+  }
   @media only screen and (max-width: 768px) {
-  /* For mobile phones: */  
-  .content{
-    width: 100%;  
+    #sliderframe{margin-top:0px;}
+    #header{display: none;}
+    #headercontent{display: none;}
+    #slider{transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);}
+  
   }
+@media only screen and (min-width: 768px) {
+  #sliderframe{margin-top:62px;}
+  #slider{transform: translateY(-100%) translateY(-62px);
+    -webkit-transform: translateY(-100%) translateY(-62px);
   }
-
+}
   #slidercontent {
     background: #fff;
     display: block;
