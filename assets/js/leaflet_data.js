@@ -426,21 +426,4 @@ var polygon = L.polygon([
 
        });
 
-var polygon = L.polygon([
-  [59.8778232371038,8.59076490571667],
-    [59.8778182813685,8.59072763353724],
-    [59.8778576463459,8.59070696480661],
-    [59.877862978001,8.59074673319095],
-    [59.8778957897264,8.59072953892583],
-    [59.8779147309768,8.59087810300724],
-    [59.8778108362738,8.5909326103945],
-    [59.8777907037286,8.59078209648841],],
-     {weight: 1, color: 'grey', fillColor:'#ff0800'}).addTo(map).on('click', function() {
 
-         $('#sliderframe').attr('src', 'assets/descriptions/rodbyen.html').on('load', function(){$slider.setAttribute('class', 'slide-in');
-         $('#mapid').focus();});
-
-
-
-
-       });
