@@ -5,9 +5,7 @@
 // Byplanlegging, linjer og strukturer
 
 // Åsmund Vinjes gate
-  var imageUrl = 'assets/img/structures/struktur_vinjesgt_georef_trans.png',
-  imageBounds = [[59.878831848, 8.62540734785], [59.8801751927, 8.62802859585]];
-  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+  
 
   // Krysset Mæls gate / Sam Eydes gate
   // var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans2.png',
@@ -15,9 +13,23 @@
   // L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
   // Krysset Mæls gate / Sam Eydes gate, small version
-  var imageUrl = 'assets/img/structures/krysset_mælgt_sameydesgt_georef_trans4.png',
-  imageBounds = [[59.8792427025, 8.61799000085], [59.8797714851, 8.61921730015]];
-  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+ // var strukturer = {
+  //"strukturdata": [{
+ //   "iframeResource": "structures.html",
+ //   "imageUrl": "assets/img/structures/struktur_vinjesgt_georef_trans.png",
+ //   "imageBounds": [
+//      [59.878831848, 8.62540734785],
+ //     [59.8801751927, 8.62802859585]
+ //   ]
+ // }, {
+ //   "iframeResource": "structures2.html",
+ //   "imageUrl": "assets/img/structures/krysset_mælgt_sameydesgt_georef_trans2.png",
+//    "imageBounds": [
+//      [59.8777244318, 8.61450173237],
+//      [59.880518028, 8.62244211736]
+//    ]
+//  }]
+//};
 
 //  Building-polygons
 //  BYGNINGSPOLYGONER
