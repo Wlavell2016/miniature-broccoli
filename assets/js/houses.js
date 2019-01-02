@@ -5,14 +5,8 @@ let houses = {
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Adresse": "Adresse", "Hustype": "Hustype", "iframeResource": "rodbyen.html", "color": "#000", "fillcolor": "blue","opacity": "0.65", "weight": "1"}, "geometry": { "type": "Polygon", "coordinates": [ [[8.59076490571667, 59.8778232371038],
-      [8.59072763353724, 59.8778182813685],
-      [8.59070696480661, 59.8778576463459],
-      [8.59074673319095, 59.877862978001],
-      [8.59072953892583, 59.8778957897264],
-      [8.59087810300724, 59.8779147309768],
-      [8.5909326103945, 59.8778108362738],
-      [8.59078209648841, 59.8777907037286] ] ] } }
+{ "type": "Feature", "properties": { "adresse": "Atrågata 4", "område": "rødbyen", "iframeResource": "j11.html", "hustype": "J11", "color": "#000", "fillcolor": "red", "opacity": "1", "weight": "1"}, "geometry": { "type": "Polygon", "coordinates": [ [[8.31896423665, 59.8229045695], [8.31742053480, 59.8231494447], [8.31744336262, 59.8232017358], [8.31636359894, 59.8233807571], [8.31633299476, 59.8233163924], [8.31575708874, 59.8234057123]] ] } },
+{ "type": "Feature", "properties": { "adresse": "Atrågata 4", "område": "rødbyen", "iframeResource": "j11.html", "hustype": "J11", "color": "#000", "fillcolor": "blue", "opacity": "0.65", "weight": "1"}, "geometry": { "type": "Polygon", "coordinates": [ [[8.59076490571667, 59.8778232371038], [8.59072763353724, 59.8778182813685], [8.59070696480661, 59.8778576463459], [8.59074673319095, 59.877862978001], [8.59072953892583, 59.8778957897264], [8.59087810300724, 59.8779147309768], [8.5909326103945, 59.8778108362738], [8.59078209648841, 59.8777907037286] ] ] } }
 ]
 };
 
