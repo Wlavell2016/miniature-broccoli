@@ -15,6 +15,7 @@
     // Fix for 100vh not working well on mobile units
     setHeight = function(){
       $('div#mapid').css('height', $(window).height());
+      $('div#slider').css('height', $(window).height());
     }
     setHeight(); // Call once after page has loaded
 
