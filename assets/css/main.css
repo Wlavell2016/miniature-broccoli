@@ -71,7 +71,8 @@
   }
 
   #tittelnavn  {
-    font-size: 20px;
+    font-family:'advocate-c41'; 
+    font-size:2rem;
     color: #fafafa;
     display: inline;
     font-weight: 500;
@@ -80,7 +81,9 @@
     margin-bottom: 10px;
     line-height:60px;
     font-weight: 500;
-    position:relative;top: -12px;
+    position:relative;
+    top: -12px;
+    cursor: pointer;
   }
 
   #slider {
@@ -93,7 +96,7 @@
     right: 0px;
     overflow-y: scroll;
     touch-action: pan-y; /* Necessary to allow pan on touch-screens */
-    z-index: 2;
+    z-index: 50;
     text-transform: uppercase;
     
     border-bottom:3px solid pink; box-sizing: border-box; /* Making bottom of slider visible during development */
@@ -118,36 +121,105 @@
     border:0; 
     margin: 0; 
     padding:0;
+    z-index:5;
   }
-
+  .leaflet-bar{
+    border-radius:0 !important;
+  }
   .leaflet-control-layers{ 
     text-decoration:none;
     border-radius: 0px;
-    font-family:"advocate-c41";      
-    
+    font-family:"advocate-c41";    
   }
 
-  @media only screen and (max-width: 768px) {
-    .leaflet-control-layers{
+  .nav {
+      width:100%;
+      display:inline;
+      margin-right:20px;
+      float:right;
+      margin-top:-16px; 
+      font-color:'#fff';
+      position:relative;
+      z-index:4;
+    }
+.nav-mobile {
+  display:none; /* Hide from browsers that don't support media queries */
+  cursor:pointer;
+  position:fixed;
+  top:5px;
+  left:2px;
+  padding-left:6px;
+  padding-top:2px;
+  height:35px;
+  width:35px; 
+  margin-left:5px;
+}
+.nav-item {
+      margin:0 16px 0 16px;
+    }
+  @media only screen and (max-width: 767px) {
+    #nav{
+      margin-right:10px !important;
+      margin-top:-26px !important;
+      display:none;
+      color: rgba(35, 35, 35, 0.6);
+    }
+    #header{
+    background: rgba(35, 35, 35, 0);
+    box-shadow: none;}
+    #tittelnavn{display:none;}
+    #logo-image{display:none;}
+.nav-item {
+      margin:0 8px 0 8px;
+    }
+    .nav-mobile {
 
-    line-height:18px;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(35, 35, 35, 0.8);
+    display:block;
+  }
+    .leaflet-control-attribution a{
+      color: rgba(35, 35, 35, 0.8) !important;
+      font-size:8px !important;
+    }
+    .leaflet-control{
+      margin-right:2px !important;
+      margin-bottom:2px !important;
+    }
+    .leaflet-control-layers{
+      line-height:18px !important;
       border: 1px solid rgba(35, 35, 35, 0.8) !important;
-      font-size: 1rem !important;;  
-      padding: 5px !important;;
+      font-size: 1rem !important;
+      padding: 5px !important;
       margin-left: 4px !important;
       margin-bottom: 4px !important;
       padding-left:5px !important;
-    padding-right:5px !important;
-    padding-top:5px !important;
-    padding-bottom:5px !important;
+      padding-right:5px !important;
+      padding-top:5px !important;
+      padding-bottom:5px !important;
     }
+    .nav {
+      width:100%;
+      display:inline;
+    }
+    .nav-list{padding-bottom:20px;}
+    
     #sliderframe{margin-top:0px;}
-    #header{display: none;}
-    #headercontent{display: none;}
+    /*#header{display: none;}*/
+    /*#headercontent{display: none;}*/
+
+  #headercontent{padding-left:20px;}
     #slider{transform: translateY(-100%);
     -webkit-transform: translateY(-100%);}  
   }
 @media only screen and (min-width: 768px) {
+  .nav-mobile{
+    display:none !important;
+  }
+  .leaflet-control-attribution a{
+      color: rgba(35, 35, 35, 0.8) !important;
+      font-size:12px !important;
+    }
   .leaflet-control-layers{
     line-height:36px;
     border: 2px solid rgba(35, 35, 35, 0.8) !important;
