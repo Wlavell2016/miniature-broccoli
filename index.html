@@ -63,22 +63,25 @@
 
       <iframe id = "sliderframe" src="assets/descriptions/rodbyen.html" ></iframe>
     </div>
+    <div id="modal-wrapper" style="display:none;width:100%; height:100%; background-color: #fff; opacity:0.6;z-index:6;position: fixed; top:0px;display:none;"></div> 
     <div id="modal-container" style="display:none; font-family:'advocate-c41'; font-size:1.5rem; position:fixed; top:20%; left:48%;margin-left:-150px;background-color: #fff; width: 300px; border: 2px solid rgba(35, 35, 35, 1); padding:0px 25px 10px 25px; opacity: 1;z-index:9999999;">
-    <!--   <script>
+      <script>
         function test(){
         if (sessionStorage.getItem("sessionExists") === null) {
+          document.getElementById('modal-wrapper').style.display = 'block';
           document.getElementById('modal-container').style.display = 'block';
           sessionStorage.setItem("sessionExists", "true");
         }
       }
-        </script> -->
+        </script>
   
   <div class="modal-content">
     <h2>Du åpnet nettopp en artikkel!</h2>
-    <p>Trykk hurtig på artikkelen for å lukke den igjen.</p><div class="modal-content-btn fas fa-check-circle fa-lg" onclick="document.getElementById('modal-container').style.display = 'none';"></div>
-    
+    <p>Trykk hurtig på artikkelen når du vil lukke den igjen.</p><div class="modal-content-btn fas fa-check-circle fa-lg" onclick="document.getElementById('modal-wrapper').style.display = 'none';document.getElementById('modal-container').style.display = 'none';"></div>
+  
   </div>          
-</div> 
+</div>
+
   <!--<script>L.TileLayer.WMTS=L.TileLayer.extend({defaultWmtsParams:{service:'WMTS',request:'GetTile',version:'1.0.0',layers:'',styles:'',tilematrixSet:'',format:'image/jpeg'},initialize:function(url,options){this._url=url;var wmtsParams=L.extend({},this.defaultWmtsParams);var tileSize=options.tileSize||this.options.tileSize;if(options.detectRetina&&L.Browser.retina){wmtsParams.width=wmtsParams.height=tileSize*2;}else{wmtsParams.width=wmtsParams.height=tileSize;} for(var i in options){if(!this.options.hasOwnProperty(i)&&i!="matrixIds"){wmtsParams[i]=options[i];}} this.wmtsParams=wmtsParams;this.matrixIds=options.matrixIds||this.getDefaultMatrix();L.setOptions(this,options);},onAdd:function(map){this._crs=this.options.crs||map.options.crs;L.TileLayer.prototype.onAdd.call(this,map);},getTileUrl:function(coords){var tileSize=this.options.tileSize;var nwPoint=coords.multiplyBy(tileSize);nwPoint.x+=1;nwPoint.y-=1;var sePoint=nwPoint.add(new L.Point(tileSize,tileSize));var zoom=this._tileZoom;var nw=this._crs.project(this._map.unproject(nwPoint,zoom));var se=this._crs.project(this._map.unproject(sePoint,zoom));tilewidth=se.x-nw.x;var ident=this.matrixIds[zoom].identifier;var tilematrix=""+ident;var X0=this.matrixIds[zoom].topLeftCorner.lng;var Y0=this.matrixIds[zoom].topLeftCorner.lat;var tilecol=Math.floor((nw.x-X0)/tilewidth);var tilerow=-Math.floor((nw.y-Y0)/tilewidth);var url=L.Util.template(this._url,{s:this._getSubdomain(coords)});return url+L.Util.getParamString(this.wmtsParams,url)+"&tilematrix="+tilematrix+"&tilerow="+tilerow+"&tilecol="+tilecol;},setParams:function(params,noRedraw){L.extend(this.wmtsParams,params);if(!noRedraw){this.redraw();} return this;},getDefaultMatrix:function(){var matrixIds3857=new Array(22);for(var i=0;i<22;i++){matrixIds3857[i]={identifier:""+i,topLeftCorner:new L.LatLng(20037508.3428,-20037508.3428)};} return matrixIds3857;}});L.tileLayer.wmts=function(url,options){return new L.TileLayer.WMTS(url,options);};</script>-->
 
     <!-- Javascript -->
@@ -147,6 +150,7 @@
       function onEachFeature(feature, layer) {
         layer.on('click', function() {
          $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
+          test();
          $('#mapid').focus();});
        });
       }
@@ -194,7 +198,9 @@
         var rasterImageOverlay = L.imageOverlay(strukturer.strukturdata[i].imageUrl, strukturer.strukturdata[i].imageBounds,{ pane: 'strukturer',
           interactive: true,
           }).on('click', function(){
-            $('#sliderframe').attr('src', evaluatedUrl).on('load', function(){$slider.setAttribute('class', 'slide-in');
+            $('#sliderframe').attr('src', evaluatedUrl).on('load', function(){
+              test();
+              $slider.setAttribute('class', 'slide-in');
             $('#mapid').focus();});
           }).addTo(strukturRaster);
       }
