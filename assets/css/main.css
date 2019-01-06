@@ -30,11 +30,20 @@
     opacity: 1;
 
   }
+  #modal-container{z-index: 999999999;}
+  #modal-background{z-index: 999999998;
+    display:none; 
+    width:100%; 
+    height:100%; 
+    background-color: #fff; 
+    opacity:0.4; 
+    position: fixed; 
+    top:0px;}
   .modal-content-btn{
+    position:absolute; top:-5px; right:-5px;
     cursor: pointer;
-    position:fixed;
-    margin-top:-30px;
-    margin-left:260px;    
+    padding-top:-30px; 
+    padding-bottom:10px;   
     color: #70914a;}
     .modal-content-btn h2{
       margin-top:5px;}
@@ -211,12 +220,14 @@
     }
     .nav-list{padding-bottom:20px;}
     
-    #sliderframe{margin-top:0px;}
+    #sliderframe{margin-top:0px;
+      z-index:9999999999999999999;}
     /*#header{display: none;}*/
     /*#headercontent{display: none;}*/
 
   #headercontent{padding-left:20px;}
     #slider{transform: translateY(-100%);
+      z-index:999;
     -webkit-transform: translateY(-100%);}  
   }
 @media only screen and (min-width: 768px) {
