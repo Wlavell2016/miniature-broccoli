@@ -30,7 +30,14 @@
     opacity: 1;
 
   }
-
+  .modal-content-btn{
+    cursor: pointer;
+    position:fixed;
+    margin-top:-30px;
+    margin-left:260px;    
+    color: #70914a;}
+    .modal-content-btn h2{
+      margin-top:5px;}
   #logo-image {
     max-height: 45px;
     margin-right: 8px;
@@ -64,7 +71,7 @@
     text-transform: uppercase;
     color: #fff;
   }
-
+  
   #headercontent {
     height:60px;
     box-sizing: border-box;
@@ -96,7 +103,7 @@
     right: 0px;
     overflow-y: scroll;
     touch-action: pan-y; /* Necessary to allow pan on touch-screens */
-    z-index: 50;
+    z-index: 5;
     text-transform: uppercase;
     
     border-bottom:3px solid pink; box-sizing: border-box; /* Making bottom of slider visible during development */

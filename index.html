@@ -60,8 +60,25 @@
     </div>
 
     <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab; overflow-y:hidden;" >
+
       <iframe id = "sliderframe" src="assets/descriptions/rodbyen.html" ></iframe>
     </div>
+    <div id="modal-container" style="display:none; font-family:'advocate-c41'; font-size:1.5rem; position:fixed; top:20%; left:48%;margin-left:-150px;background-color: #fff; width: 300px; border: 2px solid rgba(35, 35, 35, 1); padding:0px 25px 10px 25px; opacity: 1;z-index:9999999;">
+    <!--   <script>
+        function test(){
+        if (sessionStorage.getItem("sessionExists") === null) {
+          document.getElementById('modal-container').style.display = 'block';
+          sessionStorage.setItem("sessionExists", "true");
+        }
+      }
+        </script> -->
+  
+  <div class="modal-content">
+    <h2>Du åpnet nettopp en artikkel!</h2>
+    <p>Trykk hurtig på artikkelen for å lukke den igjen.</p><div class="modal-content-btn fas fa-check-circle fa-lg" onclick="document.getElementById('modal-container').style.display = 'none';"></div>
+    
+  </div>          
+</div> 
   <!--<script>L.TileLayer.WMTS=L.TileLayer.extend({defaultWmtsParams:{service:'WMTS',request:'GetTile',version:'1.0.0',layers:'',styles:'',tilematrixSet:'',format:'image/jpeg'},initialize:function(url,options){this._url=url;var wmtsParams=L.extend({},this.defaultWmtsParams);var tileSize=options.tileSize||this.options.tileSize;if(options.detectRetina&&L.Browser.retina){wmtsParams.width=wmtsParams.height=tileSize*2;}else{wmtsParams.width=wmtsParams.height=tileSize;} for(var i in options){if(!this.options.hasOwnProperty(i)&&i!="matrixIds"){wmtsParams[i]=options[i];}} this.wmtsParams=wmtsParams;this.matrixIds=options.matrixIds||this.getDefaultMatrix();L.setOptions(this,options);},onAdd:function(map){this._crs=this.options.crs||map.options.crs;L.TileLayer.prototype.onAdd.call(this,map);},getTileUrl:function(coords){var tileSize=this.options.tileSize;var nwPoint=coords.multiplyBy(tileSize);nwPoint.x+=1;nwPoint.y-=1;var sePoint=nwPoint.add(new L.Point(tileSize,tileSize));var zoom=this._tileZoom;var nw=this._crs.project(this._map.unproject(nwPoint,zoom));var se=this._crs.project(this._map.unproject(sePoint,zoom));tilewidth=se.x-nw.x;var ident=this.matrixIds[zoom].identifier;var tilematrix=""+ident;var X0=this.matrixIds[zoom].topLeftCorner.lng;var Y0=this.matrixIds[zoom].topLeftCorner.lat;var tilecol=Math.floor((nw.x-X0)/tilewidth);var tilerow=-Math.floor((nw.y-Y0)/tilewidth);var url=L.Util.template(this._url,{s:this._getSubdomain(coords)});return url+L.Util.getParamString(this.wmtsParams,url)+"&tilematrix="+tilematrix+"&tilerow="+tilerow+"&tilecol="+tilecol;},setParams:function(params,noRedraw){L.extend(this.wmtsParams,params);if(!noRedraw){this.redraw();} return this;},getDefaultMatrix:function(){var matrixIds3857=new Array(22);for(var i=0;i<22;i++){matrixIds3857[i]={identifier:""+i,topLeftCorner:new L.LatLng(20037508.3428,-20037508.3428)};} return matrixIds3857;}});L.tileLayer.wmts=function(url,options){return new L.TileLayer.WMTS(url,options);};</script>-->
 
     <!-- Javascript -->
@@ -83,42 +100,9 @@
     </script>
 
     <script>
-      //var geojsonMarkerOptions = {
-      //  radius: 8,
-      //  fillColor: "#ff7800",
-      //  color: "#000",
-      //  weight: 1,
-      //  opacity: 1,
-      //  fillOpacity: 0.8
-      //};
-
-      //let pink = {
-      //    backgroundColor:'#c33ae2',
-      //    borderColor: '#BEBEBE',
-      //    borderWidth: '1.5',
-      //    borderStyle: 'solid',
-      //    name: 'Union of Ontario Indians'
-      //}
-
-      //let blue = {
-      //    backgroundColor:'#4286f4',
-      //    borderColor: '#BEBEBE',
-      //    borderWidth: '1.5',
-      //    borderStyle: 'solid',
-      //    name: 'Association  of Iroquois and Allied Indians'
-      //}
-
-      //let purple = {
-      //    backgroundColor:'#e2b03b',
-      //    borderColor: '#BEBEBE',
-      //    borderWidth: '1.5',
-      //    borderStyle: 'solid',
-      //    name: 'Chippewas of Rama First Nation'
-      //}
-
       var map = L.map('mapid',{
-        zoomControl: false,
-        zoomSnap: 0.1
+      zoomControl: false,
+      zoomSnap: 0.1
       }).setView([59.88011364706956, 8.605479290708901], 15.8);
       map.createPane('strukturer');
       map.createPane('Områder');
@@ -223,7 +207,7 @@
 
       }
 
-      L.control.layers(null, controlLayers, { collapsed: false, position:'bottomleft'}).addTo(map);
+      L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
 
       // Flytt zoomkontroll / Move position of zoom control
       L.control.zoom({
@@ -235,16 +219,12 @@
           var center = map.getCenter()
           console.log(center)
       });
-
     </script>
     <!-- Add leaflet-data  /  Legg til leafletdata -->
     <script src="assets/js/leaflet_data.js"></script>
     <!-- Check for presence of mobile unit and add location-point, if relevant -->
     <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
     <script src="assets/js/mobile.js"></script>
-
-    
-
     <!-- Slider-functionality -->
     <!-- Slider-funksjonalitet -->
     <script src="assets/js/slider.js"></script>
