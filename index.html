@@ -90,7 +90,7 @@
           sessionStorage.setItem("sessionExists", "true");
         }
       }
-      var modalInnhold="<h2>Velkommen til verdensarvbyen Rjukan</h2><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
+      var modalInnhold="<h2>Verdensarvbyen Rjukan</h2><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
     modal(modalInnhold, 50, true);
 
 
@@ -221,9 +221,11 @@
 
       // LAGKONTROLL / LAYER-CONTROL
       var controlLayers = {
-        "Hus": hus,
-        "Områder": Områder,
-        "Strukturer": strukturRaster 
+        "Strukturer": strukturRaster,
+        "Hustyper": hus,
+        "Bygninger": hus,
+        "Områder": Områder
+        
 
       }
 
