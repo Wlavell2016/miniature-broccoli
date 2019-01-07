@@ -12,6 +12,7 @@
 @media all and (max-width:520px) { html{ font-size: 18px; } }
 
 body {
+    backgrouind-color: #fff;
     margin-left:auto;
     margin-right:auto;
     width: 100%;
