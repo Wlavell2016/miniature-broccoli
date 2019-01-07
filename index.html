@@ -27,6 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
     <!-- Data for leaflet polygons and imageoverlays -->
     <script src="assets/js/houses.js" charset="utf-8"></script>
+    <script src="assets/js/bygninger.js" charset="utf-8"></script>
     <script src="assets/js/boundaries.js" charset="utf-8"></script>
     <script src="assets/js/structures.js" charset="utf-8"></script>      
 
@@ -123,9 +124,11 @@
       map.createPane('strukturer');
       map.createPane('Områder');
       map.createPane('hustyper');
+      map.createPane('bygningsPane');
       map.getPane('strukturer').style.zIndex = 202;
       map.getPane('Områder').style.zIndex = 200;
       map.getPane('hustyper').style.zIndex = 201;
+      map.getPane('bygningsPane').style.zIndex = 201;
       // Baselayer | Alternative layer: matrikkel_bakgrunn
       // In the following implementation first the quicker WMTS is loaded,
       // then the slower WMS is loaded: https://www.norgeibilder.no/?x=141784&y=6655207&level=17&utm=33&projects=704&layers=&planned=0
@@ -194,6 +197,19 @@
          pane: 'hustyper',
          onEachFeature: onEachFeature,
        }).addTo(map);
+
+       // BYGNINGER / BUILDINGS
+       var bygningene = L.geoJSON(bygninger, {
+         style: function(feature) {return {
+           fillColor: feature.properties.fillcolor,
+           color: feature.properties.color,
+           weight: feature.properties.weight,
+           opacity: feature.properties.opacity,
+          fillOpacity: feature.properties.fillOpacity};         
+         },
+         pane: 'bygningsPane',
+         onEachFeature: onEachFeature,
+       });
         // L.geoJSON(area, {
         //       style: function(feature) {
         //           switch (feature.properties.Type) {
@@ -222,11 +238,10 @@
       // LAGKONTROLL / LAYER-CONTROL
       var controlLayers = {
         "Strukturer": strukturRaster,
+        "Verneverdi": strukturRaster,
         "Hustyper": hus,
-        "Bygninger": hus,
+        "Bygninger": bygningene,
         "Områder": Områder
-        
-
       }
 
       L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
