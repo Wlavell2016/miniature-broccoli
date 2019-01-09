@@ -155,8 +155,19 @@ options = {
 // navigator.geolocation.clearWatch(id);+
 var toggleLocator = function(){
   locatorActive = !locatorActive;
-  if(locatorActive == true){id = navigator.geolocation.watchPosition(success, error, options);
-    document.getElementById("crosshairs").classList.add("crosshairsactive");
+
+  if(locatorActive == true){
+      navigator.geolocation.getCurrentPosition(function(position) {
+      if(position.coords.latitude>59.881866 || position.coord.latitude<59.872372 || position.coord.longitude<8.601754 || position.coord.longitude>8.596850){ // Test if we are outside the world heritage area of Rjukan
+        var modalInnhold="<h2>Det ser ikke ut som du er i Rjukan nå .. </h2><p> .. men kom gjerne hit og utforsk den spennende verdensarvarkitekturen og historien bak! Aktiver kartet når du er her, så ser du akkurat hvor du er, og hva du kan se i nærheten.</p><p>Spør <a href=\"https://www.visitrjukan.com/\">VisitRjukan</a> om arkitektur i verdensarvbyen.</p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
+        modal(modalInnhold, 50, true); // Do this if we are outside the area of Rjukan
+        locatorActive = !locatorActive; // Reset the variable if outside of Rjukan and return
+        return;}else{
+          // If we are inside the world heritage area of Rjukan, do this
+          id = navigator.geolocation.watchPosition(success, error, options);
+          document.getElementById("crosshairs").classList.add("crosshairsactive");
+          }
+        });    
 
   }else{
       document.getElementById("crosshairs").classList.remove("crosshairsactive");
