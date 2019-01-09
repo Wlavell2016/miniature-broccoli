@@ -119,6 +119,40 @@
       zoomControl: false,
       zoomSnap: 0.1
       }).setView([59.88011364706956, 8.605479290708901], 14);
+      
+
+
+      var id, target, options;
+var current_position, current_accuracy;
+function success(position) {
+  // for when getting location is a success
+         let coordinates = new L.LatLng(position.coords.latitude, position.coords.longitude);
+         map.setView(coordinates, map.getZoom());
+         if (current_position) {
+          map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+      }
+         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "#3d7be1", fillOpacity: 1}).addTo(map);   
+         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, fill: true, fillOpacity: 0.1}).addTo(map);  
+         current_position.bringToFront();
+}
+
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+
+
+options = {
+  enableHighAccuracy: true,
+  timeout: 50000,
+  maximumAge: 0
+};
+
+id = navigator.geolocation.watchPosition(success, error, options);
+// navigator.geolocation.clearWatch(id);+
+
+
       map.createPane('strukturer');
       map.createPane('Områder');
       map.createPane('hustyper');
@@ -269,8 +303,7 @@
           console.log(center)
       });
     </script>
-    <!-- Add leaflet-data  /  Legg til leafletdata -->
-    <script src="assets/js/leaflet_data.js"></script>
+    
     <!-- Check for presence of mobile unit and add location-point, if relevant -->
     <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
     <script src="assets/js/mobile.js"></script>
