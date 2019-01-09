@@ -48,7 +48,7 @@
             <li class="fas fa-map fa-lg nav-item" ></li>
             <li class="fas fa-envelope fa-lg nav-item" ></li>
             <!-- <li class="fas fa-flag fa-lg nav-item" ></li> -->
-            <li class="fas fa-crosshairs fa-lg nav-item" ></li>
+            <li class="fas fa-crosshairs fa-lg nav-item" id="crosshairs" style="cursor: pointer;" onclick="toggleLocator();"></li>
             
           </ul>
         </nav>
@@ -124,6 +124,7 @@
 
       var id, target, options;
 var current_position, current_accuracy;
+var locatorActive = false;
 function success(position) {
   // for when getting location is a success
          let coordinates = new L.LatLng(position.coords.latitude, position.coords.longitude);
@@ -132,9 +133,9 @@ function success(position) {
           map.removeLayer(current_position);
           map.removeLayer(current_accuracy);
       }
-         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "#3d7be1", fillOpacity: 1}).addTo(map);   
-         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, fill: true, fillOpacity: 0.1}).addTo(map);  
-         current_position.bringToFront();
+         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillOpacity: 1}).addTo(map);   
+         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillOpacity: 0.1}).addTo(map);  
+         // current_position.bringToFront();
 }
 
 function error(err) {
@@ -149,9 +150,24 @@ options = {
   maximumAge: 0
 };
 
-id = navigator.geolocation.watchPosition(success, error, options);
-// navigator.geolocation.clearWatch(id);+
+// position.coords.latitude>59.881866 || position.coord.latitude<59.872372 || position.coord.longitude<8.601754 || position.coord.longitude>8.596850
 
+// navigator.geolocation.clearWatch(id);+
+var toggleLocator = function(){
+  locatorActive = !locatorActive;
+  if(locatorActive == true){id = navigator.geolocation.watchPosition(success, error, options);
+    document.getElementById("crosshairs").classList.add("crosshairsactive");
+
+  }else{
+      document.getElementById("crosshairs").classList.remove("crosshairsactive");
+    navigator.geolocation.clearWatch(id);
+    map.setView([59.88011364706956, 8.605479290708901], 14);
+    map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+  }
+  
+
+}
 
       map.createPane('strukturer');
       map.createPane('Områder');

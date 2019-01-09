@@ -30,6 +30,9 @@
     opacity: 1;
 
   }
+ .crosshairsactive{
+    color: red !important;
+  }
   #modal-container{z-index: 999999999;}
   #modal-background{z-index: 999999998;
     display:none; 
