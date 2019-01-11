@@ -45,7 +45,7 @@
             <li class="fas fa-map fa-lg nav-item" ></li>
             <li class="fas fa-envelope fa-lg nav-item" ></li>
             <!-- <li class="fas fa-flag fa-lg nav-item" ></li> -->
-            <li class="fas fa-crosshairs fa-lg nav-item" ></li>
+            <li class="fas fa-crosshairs fa-lg nav-item" id="crosshairs" style="cursor: pointer;" onclick="toggleLocator();"></li>
             
           </ul>
         </nav>
@@ -116,6 +116,66 @@
       zoomControl: false,
       zoomSnap: 0.1
       }).setView([59.88011364706956, 8.605479290708901], 14);
+      
+
+
+      var id, target, options;
+var current_position, current_accuracy;
+var locatorActive = false;
+function success(position) {
+  // for when getting location is a success
+         let coordinates = new L.LatLng(position.coords.latitude, position.coords.longitude);
+         map.setView(coordinates, map.getZoom());
+         if (current_position) {
+          map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+      }
+         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillOpacity: 1}).addTo(map);   
+         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillOpacity: 0.1}).addTo(map);  
+         // current_position.bringToFront();
+}
+
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+
+
+options = {
+  enableHighAccuracy: true,
+  timeout: 50000,
+  maximumAge: 0
+};
+
+// position.coords.latitude>59.881866 || position.coord.latitude<59.872372 || position.coord.longitude<8.601754 || position.coord.longitude>8.596850
+
+// navigator.geolocation.clearWatch(id);+
+var toggleLocator = function(){
+  locatorActive = !locatorActive;
+
+  if(locatorActive == true){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        alert(position.coords.latitude);alert(position.coords.longitude);
+      if(position.coords.latitude<59.872965 || position.coords.latitude>60 || position.coords.longitude<8.589695 || position.coords.longitude>8.84){ // Test if we are outside the world heritage area of Rjukan
+        var modalInnhold="<h2>Det ser ikke ut som du er i Rjukan nå .. </h2><p> .. men kom gjerne hit og utforsk den spennende verdensarvarkitekturen og historien bak. Aktiver kartet når du er her, så ser du akkurat hvor du er, og hva du kan se i nærheten.</p><p>Spør <a href=\"https://www.visitrjukan.com/\">VisitRjukan</a> om arkitektur i verdensarvbyen.</p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
+        modal(modalInnhold, 50, true); // Do this if we are outside the area of Rjukan
+        locatorActive = !locatorActive; // Reset the variable if outside of Rjukan and return
+        return;}else{
+          // If we are inside the world heritage area of Rjukan, do this
+          id = navigator.geolocation.watchPosition(success, error, options);
+          document.getElementById("crosshairs").classList.add("crosshairsactive");
+          }
+        });    
+
+  }else{
+      document.getElementById("crosshairs").classList.remove("crosshairsactive");
+    navigator.geolocation.clearWatch(id);
+    map.setView([59.88011364706956, 8.605479290708901], 14);
+    map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+  }
+}
+
       map.createPane('strukturer');
       map.createPane('Områder');
       map.createPane('hustyper');
@@ -196,7 +256,10 @@
          },
          pane: 'hustyper',
          onEachFeature: onEachFeature,
-       }).addTo(map);
+       }).bindTooltip(function (layer) {
+    return String(layer.feature.properties.hustype); // Needs to be a string
+  } //, {permanent: true, opacity: 0.5}
+  ).addTo(map);
 
        // BYGNINGER / BUILDINGS
        var bygningene = L.geoJSON(bygninger, {
@@ -267,8 +330,7 @@
           console.log(center)
       });
     </script>
-    <!-- Add leaflet-data  /  Legg til leafletdata -->
-    <script src="assets/js/leaflet_data.js"></script>
+    
     <!-- Check for presence of mobile unit and add location-point, if relevant -->
     <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
     <script src="assets/js/mobile.js"></script>

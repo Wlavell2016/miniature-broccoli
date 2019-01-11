@@ -44,7 +44,10 @@
       var radius = 2;
       // Add location-point
       // Legg til lokasjonspunkt
-      current_accuracy = L.circle(e.latlng, radius).addTo(verdensarvkart);
+      if (current_position) {
+          map.removeLayer(current_position);
+      }
+      current_position = L.circle(e.latlng, radius).addTo(verdensarvkart);
   }
 
   // If error in localization
