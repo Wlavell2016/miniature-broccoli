@@ -235,20 +235,22 @@ var toggleLocator = function(){
 
       // symbolize buildings based on husType values
       function getColor(d, e) {
-        if(typeof e == 'undefined'){
-         return d === '11A' ? 'green' :
-               d === '11'  ? 'yellow' :
+         let p =( 
+              d === '11A' ? 'green' :
+               d === '11'  ? 'blue' :
                d === '11B'  ? 'red' :
                d === '11C'  ? 'brown' :
                d === '11D'  ? 'purple' :
-                              'yellow';
-              }else{return e};
+                              'none');
+         if(p == 'none'){p = e};
+
+              return p;
               }
 
       // HUS / HOUSES - todo: add color/fillColor/weight/opacity-switch dependent on 'hustype'
        var hus = L.geoJSON(houses, {
          style: function(feature) {return {
-           fillColor: getColor(feature.properties.hustype, feature.properties.color),
+           fillColor: getColor(feature.properties.hustype, feature.properties.fillcolor),
            //fillColor: feature.properties.fillcolor,
            color: feature.properties.color,
            weight: feature.properties.weight,
