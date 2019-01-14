@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="assets/css/fonts.css">
     <!--  Buy your own font-license at https://practicaltypography.com -->
-    
+
     <!-- Main/Hoved CSS -->
-    <link href="assets/css/main.css" rel="stylesheet"> 
+    <link href="assets/css/main.css" rel="stylesheet">
     <!-- Adding leaflet JS after Leaflet CSS -->
     <!-- Laster leaflet JS etter Leaflet CSS -->
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
@@ -24,16 +24,17 @@
     <!-- Scripts for transforming projections -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
     <!-- Data for leaflet polygons and imageoverlays -->
     <script src="assets/js/houses.js" charset="utf-8"></script>
     <script src="assets/js/bygninger.js" charset="utf-8"></script>
     <script src="assets/js/omraader.js" charset="utf-8"></script>
-    <script src="assets/js/structures.js" charset="utf-8"></script>    
+    <script src="assets/js/structures.js" charset="utf-8"></script>
 
     <!-- Jquery -->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <!-- Leaflet control styling -->
-    
+
   </head>
 
   <body>
@@ -42,17 +43,17 @@
         <a href="index.html"><img id = "logo-image" src="assets/img/kommunevaapenet.png" alt="Verdensarven / Tinn kommune"></a>
         <!-- <div class="nav-mobile fas fa-bars fa-2x"></div>  -->
         <nav id="nav" style="display:inline;margin-right:20px;float:right;margin-top:-16px; font-color:'#fff';">
-          <ul class="nav-list" style="padding-bottom:20px;">            
+          <ul class="nav-list" style="padding-bottom:20px;">
             <li class="fas fa-info fa-lg nav-item" ></li>
             <li class="fas fa-question fa-lg nav-item" ></li>
             <li class="fas fa-map fa-lg nav-item" ></li>
             <li class="fas fa-envelope fa-lg nav-item" ></li>
             <!-- <li class="fas fa-flag fa-lg nav-item" ></li> -->
             <li class="fas fa-crosshairs fa-lg nav-item" id="crosshairs" style="cursor: pointer;" onclick="toggleLocator();"></li>
-            
+
           </ul>
         </nav>
-        
+
         <p id = "tittelnavn" onclick="window.location = 'index.html';">verdensarvbyen rjukan</p>
       </div>
     </header>
@@ -63,12 +64,12 @@
     <div id = "slider" class="dragscroll" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab; overflow-y:hidden;" >
       <iframe id = "sliderframe" src="assets/descriptions/rodbyen.html" ></iframe>
     </div>
-    <div id="modal-background"></div> 
-    
+    <div id="modal-background"></div>
+
 <div id="modal-container" style="display:none; font-family:'advocate-c41'; font-size:1.5rem; position:fixed; top:20%; left:50%;margin-left:0;background-color: #fff;  border: 2px solid rgba(35, 35, 35, 1); padding:0px 25px 10px 25px; opacity: 1;">
-      
+
   <div class="modal-content" id="modal-content">
-  </div>          
+  </div>
 </div>
 <script>
   // modal-function
@@ -84,7 +85,7 @@
   // function for testing if session exists when first article is loaded. Display message if session does not exist.
   function firstArticleLoad(){
         if (sessionStorage.getItem("sessionExists") === null) {
-          var modalInnhold = "<h2>Du åpnet nettopp en artikkel!</h2><p>Trykk hurtig på artikkelen når du vil lukke den igjen.</p><p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"; 
+          var modalInnhold = "<h2>Du åpnet nettopp en artikkel!</h2><p>Trykk hurtig på artikkelen når du vil lukke den igjen.</p><p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>";
           modal(modalInnhold, 40, true);
           sessionStorage.setItem("sessionExists", "true");
         }
@@ -119,7 +120,7 @@
       zoomControl: false,
       zoomSnap: 0.1
       }).setView([59.88011364706956, 8.605479290708901], 14);
-      
+
 
 
       var id, target, options;
@@ -133,8 +134,8 @@ function success(position) {
           map.removeLayer(current_position);
           map.removeLayer(current_accuracy);
       }
-         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillOpacity: 1}).addTo(map);   
-         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillOpacity: 0.1}).addTo(map);  
+         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillOpacity: 1}).addTo(map);
+         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillOpacity: 0.1}).addTo(map);
          // current_position.bringToFront();
 }
 
@@ -168,7 +169,7 @@ var toggleLocator = function(){
           id = navigator.geolocation.watchPosition(success, error, options);
           document.getElementById("crosshairs").classList.add("crosshairsactive");
           }
-        });    
+        });
 
   }else{
       document.getElementById("crosshairs").classList.remove("crosshairsactive");
@@ -220,7 +221,7 @@ var toggleLocator = function(){
       //}
       //}).addTo(map);
 
-      
+
       function onEachFeature(feature, layer) {
         layer.on('click', function() {
          $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
@@ -228,7 +229,7 @@ var toggleLocator = function(){
          $('#mapid').focus();});
        });
       }
-     
+
       // FARGER / COLOR: http://colorbrewer2.org/#type=sequential&scheme=BuPu&n=9
 
       // OMRÅDER / AREAS
@@ -240,25 +241,40 @@ var toggleLocator = function(){
           weight: feature.properties.weight,
           opacity: feature.properties.opacity//,
           //fillOpacity: feature.properties.fillOpacity
-        };         
+        };
         },
         pane: 'Områder',
         onEachFeature: onEachFeature,
       }).addTo(map);
 
 
+      function getColor(d) {
+        return d === 'J11' ? '#800026' :
+               d === 'J1'  ? '#BD0026' :
+               d === 'ikkeregistrert'  ? '#E31A1C' :
+               d === '14'  ? '#FC4E2A' :
+               d === 'J'   ? '#FD8D3C' :
+               d === 'unik'? '#FEB24C' :
+               d === 'J2'  ? '#FED976' :
+               d === '*1'  ? '#F7B094' :
+               d === '125A'? '#F5717F' :
+               d === '38A' ? '#BF6B84' :
+                              '#345C7D';
+                }
+
       // HUS / HOUSES - todo: add color/fillColor/weight/opacity-switch dependent on 'hustype'
        var hus = L.geoJSON(houses, {
          style: function(feature) {return {
-           fillColor: feature.properties.fillcolor,
+           fillColor: getColor(feature.properties.hustype),
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-          fillOpacity: feature.properties.fillOpacity};         
+           fillOpacity: feature.properties.fillOpacity};
          },
          pane: 'hustyper',
          onEachFeature: onEachFeature,
        }).addTo(map);
+       //
 
        // BYGNINGER / BUILDINGS
        var bygningene = L.geoJSON(bygninger, {
@@ -267,20 +283,12 @@ var toggleLocator = function(){
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-          fillOpacity: feature.properties.fillOpacity};         
+          fillOpacity: feature.properties.fillOpacity};
          },
          pane: 'bygningsPane',
          onEachFeature: onEachFeature,
        });
-        // L.geoJSON(area, {
-        //       style: function(feature) {
-        //           switch (feature.properties.Type) {
-        //               case 'Pink': return {color: '#c33ae2'};
-        //               case 'Blue':   return {color: '#4286f4'};
-        //               case 'Orange':   return {color: '#e2b03b'};
-        //           }
-        //       }
-        //       }).addTo(map);
+
 
       // STRUKTURER / STRUCTURES
       strukturRaster = L.layerGroup();
@@ -329,7 +337,7 @@ var toggleLocator = function(){
           console.log(center)
       });
     </script>
-    
+
     <!-- Check for presence of mobile unit and add location-point, if relevant -->
     <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
     <script src="assets/js/mobile.js"></script>
