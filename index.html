@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Verdensarvbyen - Arkitektur, bygningstyper og byplanlegging i Rjukan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex"> <!-- During development -->
     <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon/apple-icon-152x152.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
@@ -13,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="assets/css/fonts.css">
     <!--  Buy your own font-license at https://practicaltypography.com -->
+
 
     <!-- Main/Hoved CSS -->
     <link href="assets/css/main.css" rel="stylesheet">
@@ -34,9 +36,7 @@
     <!-- Jquery -->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <!-- Leaflet control styling -->
-
   </head>
-
   <body>
    <header id = "header">
       <div id = "headercontent" style='padding-left:20px;'>
@@ -197,20 +197,6 @@ var toggleLocator = function(){
         attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a>',
       }).addTo(map);
 
-      // Create layer groups to allow turning on and off of layer in the map.
-      //let pinkLayer = L.layerGroup().addTo(map);
-      //let blueLayer = L.layerGroup().addTo(map);
-      //let orangeLayer = L.layerGroup().addTo(map);
-      //let houseLayer = L.layerGroup().addTo(map);
-
-      // Store the layer groups in an object for use in the layer control
-      //var urbanLayers = {
-      //  'Orange': orangeLayer,
-      //  'Blue': blueLayer,
-      //  'Pink': pinkLayer,
-      //  'Houses':houseLayer
-      //};
-
       // HOUSES
       // load house points geoJSON data from assets/js/Houses.js
       //  L.geoJSON(points, {
@@ -234,20 +220,20 @@ var toggleLocator = function(){
 
       // OMRÅDER / AREAS
       // load polygon geoJSON data from assets/js/Boundaries.js
-      var Områder = L.geoJSON(areas, {
+      var Områder = L.geoJSON(omraader, {
         style: function(feature) {return {
           fillColor: feature.properties.fillcolor,
           color: feature.properties.color,
           weight: feature.properties.weight,
-          opacity: feature.properties.opacity//,
-          //fillOpacity: feature.properties.fillOpacity
+          opacity: feature.properties.opacity,
+          fillOpacity: feature.properties.fillOpacity
         };
         },
         pane: 'Områder',
         onEachFeature: onEachFeature,
       }).addTo(map);
 
-
+      // symbolize buildings based on husType values
       function getColor(d) {
         return d === 'J11' ? '#800026' :
                d === 'J1'  ? '#BD0026' :
@@ -269,12 +255,15 @@ var toggleLocator = function(){
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-           fillOpacity: feature.properties.fillOpacity};
+           fillOpacity: feature.properties.fillOpacity
+         };
          },
          pane: 'hustyper',
          onEachFeature: onEachFeature,
-       }).addTo(map);
-       //
+       }).bindTooltip(function (layer) {
+    return String(layer.feature.properties.hustype); // Needs to be a string
+  } //, {permanent: true, opacity: 0.5}
+  ).addTo(map);
 
        // BYGNINGER / BUILDINGS
        var bygningene = L.geoJSON(bygninger, {
