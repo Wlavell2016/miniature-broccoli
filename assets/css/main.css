@@ -109,7 +109,6 @@
     color: #333;
     background: rgba(35,35,35,.2);
     position: fixed;
-    top: 0px;
     right: 0px;
     overflow-y: scroll;
     touch-action: pan-y; /* Necessary to allow pan on touch-screens */
@@ -121,6 +120,14 @@
     cursor : -o-grab;
     cursor : -moz-grab;
     cursor : -webkit-grab;
+   -webkit-transition: top 0.3s linear 0s;
+  -moz-transition: top 0.3s linear 0s;
+  -o-transition: top 0.3s linear 0s;
+  transition: top 0.3s linear 0s;
+
+    
+
+  }
   }
 
   .content {
@@ -227,9 +234,7 @@
     /*#headercontent{display: none;}*/
 
   #headercontent{padding-left:20px;}
-    #slider{transform: translateY(-100%);
-      z-index:999;
-    -webkit-transform: translateY(-100%);}  
+
   }
 @media only screen and (min-width: 768px) {
   .nav-mobile{
@@ -251,9 +256,7 @@
     padding-bottom:15px !important;
     }
   #sliderframe{margin-top:62px;}
-  #slider{transform: translateY(-100%) translateY(-62px);
-    -webkit-transform: translateY(-100%) translateY(-62px);
-  }
+  
 }
   #slidercontent {
     background: #fff;
@@ -273,29 +276,10 @@
   }
 
   .slide-in {
-    animation: slide-in 0.5s forwards;
-    -webkit-animation: slide-in 0.5s forwards;
+    top: 0% !important;;
   }
 
   .slide-out {
-    animation: slide-out 0.5s forwards;
-    -webkit-animation: slide-out 0.5s forwards;
+    top: -100% !important;
   }
 
-  @keyframes slide-in {
-    100% { transform: translateY(0%); }
-  }
-
-  @-webkit-keyframes slide-in {
-    100% { -webkit-transform: translateY(0%); }
-  }
-
-  @keyframes slide-out {
-    0% { transform: translateY(0%); }
-    100% { transform: translateY(-100%) translateY(-62px);}
-  }
-
-  @-webkit-keyframes slide-out {
-    0% { -webkit-transform: translateY(0%); }
-    100% { -webkit-transform: translateY(-100%) translateY(-62px);}
-  }
