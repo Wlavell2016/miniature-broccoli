@@ -233,29 +233,56 @@ var toggleLocator = function(){
         onEachFeature: onEachFeature,
       }).addTo(map);
 
-      // symbolize buildings based on husType values
-      function getColor(d, e) {
+      // symbolize buildings based on husType values. (https://github.com/lwsu/leaflet-polygon-fillPattern)
+      function getFillColor(d, e) {
          let p =( 
-              d === '11A' ? 'green' :
+          d === '11E' ? 'yellow' :
+              d === '11A' ? 'purple' :
+              d === 'E' ? 'red' :
                d === '11'  ? 'blue' :
-               d === '11B'  ? 'red' :
-               d === '11C'  ? 'brown' :
+               d === '11B'  ? 'purple' :
+               d === '11C'  ? 'blue' :
                d === '11D'  ? 'purple' :
+               d === '5'  ? 'purple' :
+               d === '123'  ? 'red' :
+               d === 'J1'  ? 'red' :
+               d === 'J'  ? 'red' :
+               d === 'J5'  ? 'red' :
+               d === '119D'  ? 'green' :
+               d === '4H.15'  ? 'black' :
                               'none');
          if(p == 'none'){p = e};
 
               return p;
               }
+              function getFillOpacity(d, e) {
+         let p =( 
+          d === '11E' ? 1 :
+          d === 'E' ? 1 :
+              d === '11A' ? 0.2 :
+               d === '11'  ? 0.2 :
+               d === '11B'  ? 0.5 :
+               d === 'J1'  ? 0.85 :
+               d === 'J1'  ? 0.65 :
+               d === 'J'  ? 0.4 :
+               d === '11C'  ? 0.1 :
+               d === '11D'  ? 0.2 :
+               d === '4H.15'  ? 0.6 :
+                              'none');
+         if(p == 'none'){p = 0.2};
 
-      // HUS / HOUSES - todo: add color/fillColor/weight/opacity-switch dependent on 'hustype'
+              return p;
+              }
+
+      // HUS / HOUSES
        var hus = L.geoJSON(houses, {
          style: function(feature) {return {
-           fillColor: getColor(feature.properties.hustype, feature.properties.fillcolor),
+           fillColor: getFillColor(feature.properties.hustype, feature.properties.fillcolor),
            //fillColor: feature.properties.fillcolor,
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-           fillOpacity: feature.properties.fillOpacity,           
+           fillOpacity: getFillOpacity(feature.properties.hustype, feature.properties.fillOpacity),           
            dashArray: feature.properties.dasharray
          };
          },
