@@ -299,20 +299,7 @@ var toggleLocator = function(){
   } //, {permanent: true, opacity: 0.5}
   ).addTo(map);
 
-       // BYGNINGER / BUILDINGS
-       var bygningene = L.geoJSON(bygninger, {
-         style: function(feature) {return {
-           fillColor: feature.properties.fillcolor,
-           color: feature.properties.color,
-           weight: feature.properties.weight,
-           opacity: feature.properties.opacity,
-          fillopacity: feature.properties.fillopacity};
-         },
-         pane: 'bygningsPane',
-         onEachFeature: onEachFeature,
-       });
-
-
+ 
       // STRUKTURER / STRUCTURES
       strukturRaster = L.layerGroup();
       for (i = 0; i < strukturer.strukturdata.length; i++){
@@ -339,20 +326,20 @@ var toggleLocator = function(){
       //     {color:'red',fill:true}).addTo(map);
 
       // LAGKONTROLL / LAYER-CONTROL
-      // var controlLayers = {
-      //   //"Strukturer": strukturRaster,
-      //   //"Verneverdi": strukturRaster,
-      //   "Interessant": beskrivelse
+       var controlLayers = {
+      "Strukturer": strukturRaster,
+      "Verneverdi": strukturRaster,
+       "Interessant": beskrivelse,
       //   //"Bygninger": bygningene,
-      //   //"Områder": Områder
-      // }
+      "Områder": Områder
+       };
 
-      // L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
+      L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
 
       // Flytt zoomkontroll / Move position of zoom control
-      // L.control.zoom({
-      //   position:'bottomright'
-      // }).addTo(map)
+      L.control.zoom({
+        position:'bottomright'
+      }).addTo(map);
 
       // Acquire the latitude and longitude of the center of the map. Useful for needing to recenter the map view.
       // map.on('click',function() {
