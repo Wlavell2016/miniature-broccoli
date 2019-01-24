@@ -182,11 +182,11 @@ var toggleLocator = function(){
 
       map.createPane('strukturer');
       map.createPane('Områder');
-      map.createPane('main');
+      map.createPane('mainPane');
       map.createPane('bygningsPane');
       map.getPane('strukturer').style.zIndex = 202;
       map.getPane('Områder').style.zIndex = 200;
-      map.getPane('main').style.zIndex = 201;
+      map.getPane('mainPane').style.zIndex = 201;
       map.getPane('bygningsPane').style.zIndex = 201;
       // Baselayer | Alternative layer: matrikkel_bakgrunn
       // In the following implementation first the quicker WMTS is loaded,
@@ -210,8 +210,8 @@ var toggleLocator = function(){
 
       function onEachFeature(feature, layer) {
         layer.on('click', function() {
-          //$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.url).on('load', function(){$('#slider').addClass('slide-in').removeClass('slide-out');
-         $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.url).on('load', function(){$slider.setAttribute('class', 'slide-in');
+          //$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$('#slider').addClass('slide-in').removeClass('slide-out');
+         $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
           firstArticleLoad();
          $('#mapid').focus();});
        });
@@ -292,7 +292,7 @@ var toggleLocator = function(){
            dashArray: feature.properties.dasharray
          };
          },
-         pane: 'main',
+         pane: 'mainPane',
          onEachFeature: onEachFeature,
        }).bindTooltip(function (layer) {
     return String(layer.feature.properties.beskrivelse); // Needs to be a string
@@ -339,26 +339,26 @@ var toggleLocator = function(){
       //     {color:'red',fill:true}).addTo(map);
 
       // LAGKONTROLL / LAYER-CONTROL
-      var controlLayers = {
-        "Strukturer": strukturRaster,
-        "Verneverdi": strukturRaster,
-        "Interessant": beskrivelse,
-        "Bygninger": bygningene,
-        "Områder": Områder
-      }
+      // var controlLayers = {
+      //   //"Strukturer": strukturRaster,
+      //   //"Verneverdi": strukturRaster,
+      //   "Interessant": beskrivelse
+      //   //"Bygninger": bygningene,
+      //   //"Områder": Områder
+      // }
 
-      L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
+      // L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
 
       // Flytt zoomkontroll / Move position of zoom control
-      L.control.zoom({
-        position:'bottomright'
-      }).addTo(map)
+      // L.control.zoom({
+      //   position:'bottomright'
+      // }).addTo(map)
 
       // Acquire the latitude and longitude of the center of the map. Useful for needing to recenter the map view.
-      map.on('click',function() {
-          var center = map.getCenter()
-          console.log(center)
-      });
+      // map.on('click',function() {
+      //     var center = map.getCenter()
+      //     console.log(center)
+      // });
     </script>
 
     <!-- Check for presence of mobile unit and add location-point, if relevant -->
