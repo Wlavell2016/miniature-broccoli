@@ -5,9 +5,12 @@
     font-smooth: auto;
     text-rendering: optimizeLegibility;
     margin: 0;
+    background-color: #fff;
   }
 
-  
+  .leaflet-container {
+    background: #fff !important;
+}
 
   p, h1 {
     margin-left:10px;

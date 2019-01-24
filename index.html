@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
     <!-- Data for leaflet polygons and imageoverlays -->
-    <script src="assets/js/houses.js" charset="utf-8"></script>
+    <script src="assets/js/main.js" charset="utf-8"></script>
     <script src="assets/js/bygninger.js" charset="utf-8"></script>
     <script src="assets/js/omraader.js" charset="utf-8"></script>
     <script src="assets/js/structures.js" charset="utf-8"></script>
@@ -37,7 +37,7 @@
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <!-- Leaflet control styling -->
   </head>
-  <body>
+  <body style="background-color: '#fff';">
    <header id = "header">
       <div id = "headercontent" style='padding-left:20px;'>
         <a href="index.html"><img id = "logo-image" src="assets/img/kommunevaapenet.png" alt="Verdensarven / Tinn kommune"></a>
@@ -134,8 +134,8 @@ function success(position) {
           map.removeLayer(current_position);
           map.removeLayer(current_accuracy);
       }
-         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillOpacity: 1}).addTo(map);
-         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillOpacity: 0.1}).addTo(map);
+         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillopacity: 1}).addTo(map);
+         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillopacity: 0.1}).addTo(map);
          // current_position.bringToFront();
 }
 
@@ -182,11 +182,11 @@ var toggleLocator = function(){
 
       map.createPane('strukturer');
       map.createPane('Områder');
-      map.createPane('hustyper');
+      map.createPane('main');
       map.createPane('bygningsPane');
       map.getPane('strukturer').style.zIndex = 202;
       map.getPane('Områder').style.zIndex = 200;
-      map.getPane('hustyper').style.zIndex = 201;
+      map.getPane('main').style.zIndex = 201;
       map.getPane('bygningsPane').style.zIndex = 201;
       // Baselayer | Alternative layer: matrikkel_bakgrunn
       // In the following implementation first the quicker WMTS is loaded,
@@ -194,7 +194,7 @@ var toggleLocator = function(){
       // Bakgrunnskart | Alternativt kartlag: matrikkel_bakgrunn
       // var key ='673B1E78E90DBCB2AD3D4C3E22D94B352D42FB9C02F7ED5F3FD70AD56C53A966F1A6EFDECCD090EFFC247FD9D054D1D39A908F0B6FBF60A28D018F0853CD0DA1'
       L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4graatone&zoom={z}&x={x}&y={y}', {
-        attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a>',
+        attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a>', opacity: 0.5,
       }).addTo(map);
 
       // HOUSES
@@ -210,8 +210,8 @@ var toggleLocator = function(){
 
       function onEachFeature(feature, layer) {
         layer.on('click', function() {
-          //$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$('#slider').addClass('slide-in').removeClass('slide-out');
-         $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
+          //$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.url).on('load', function(){$('#slider').addClass('slide-in').removeClass('slide-out');
+         $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.url).on('load', function(){$slider.setAttribute('class', 'slide-in');
           firstArticleLoad();
          $('#mapid').focus();});
        });
@@ -232,7 +232,10 @@ var toggleLocator = function(){
         },
         pane: 'Områder',
         onEachFeature: onEachFeature,
-      }).addTo(map);
+      }).bindTooltip(function (layer) {
+    return String(layer.feature.properties.omraadenavn); // Needs to be a string
+  }, {sticky: true} //, {permanent: true, opacity: 0.5}
+  ).addTo(map);
 
       // symbolize buildings based on husType values. (https://github.com/lwsu/leaflet-polygon-fillPattern)
       function getFillColor(d, e) {
@@ -256,7 +259,7 @@ var toggleLocator = function(){
 
               return p;
               }
-              function getFillOpacity(d, e) {
+              function getfillopacity(d, e) {
          let p =( 
           d === '11E' ? 1 :
           d === 'E' ? 1 :
@@ -275,22 +278,24 @@ var toggleLocator = function(){
               return p;
               }
 
-      // HUS / HOUSES
-       var hus = L.geoJSON(houses, {
+      // HOVEDLAG / MAIN LAYER
+       var beskrivelse = L.geoJSON(main, {
          style: function(feature) {return {
-           fillColor: getFillColor(feature.properties.hustype, feature.properties.fillcolor),
+          // getFillColor(feature.properties.hustype, feature.properties.fillcolor),
+           fillColor: feature.properties.fillcolor,
            //fillColor: feature.properties.fillcolor,
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-           fillOpacity: getFillOpacity(feature.properties.hustype, feature.properties.fillOpacity),           
+           fillOpacity: feature.properties.fillOpacity,
+           // getfillopacity(feature.properties.hustype, feature.properties.fillopacity),           
            dashArray: feature.properties.dasharray
          };
          },
-         pane: 'hustyper',
+         pane: 'main',
          onEachFeature: onEachFeature,
        }).bindTooltip(function (layer) {
-    return String(layer.feature.properties.hustype); // Needs to be a string
+    return String(layer.feature.properties.beskrivelse); // Needs to be a string
   } //, {permanent: true, opacity: 0.5}
   ).addTo(map);
 
@@ -301,7 +306,7 @@ var toggleLocator = function(){
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-          fillOpacity: feature.properties.fillOpacity};
+          fillopacity: feature.properties.fillopacity};
          },
          pane: 'bygningsPane',
          onEachFeature: onEachFeature,
@@ -312,7 +317,7 @@ var toggleLocator = function(){
       strukturRaster = L.layerGroup();
       for (i = 0; i < strukturer.strukturdata.length; i++){
         // Force evaluation - important
-        var evaluatedUrl = 'assets/descriptions/' + strukturer.strukturdata[i].iframeResource;
+        var evaluatedUrl = 'assets/descriptions/' + strukturer.strukturdata[i].url;
         var rasterImageOverlay = L.imageOverlay(strukturer.strukturdata[i].imageUrl, strukturer.strukturdata[i].imageBounds,{ pane: 'strukturer',
           interactive: true,
           }).on('click', function(){
@@ -337,7 +342,7 @@ var toggleLocator = function(){
       var controlLayers = {
         "Strukturer": strukturRaster,
         "Verneverdi": strukturRaster,
-        "Hustyper": hus,
+        "Interessant": beskrivelse,
         "Bygninger": bygningene,
         "Områder": Områder
       }
