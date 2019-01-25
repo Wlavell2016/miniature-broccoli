@@ -116,9 +116,15 @@
     </script>
 
     <script>
-      var map = L.map('mapid',{
-      zoomControl: false,
-      zoomSnap: 0.1
+         var map = L.map('mapid',{
+      zoomControl: false,minZoom: 13,
+      zoomSnap: 0.1,
+      maxBounds: [
+        //south west
+          [59.788543, 8.245382],
+        //north east
+          [59.989371, 8.831529]
+          ],
       }).setView([59.88011364706956, 8.605479290708901], 14);
 
 
@@ -160,15 +166,15 @@ var toggleLocator = function(){
   if(locatorActive == true){
       navigator.geolocation.getCurrentPosition(function(position) {
         alert(position.coords.latitude);alert(position.coords.longitude);
-      if(position.coords.latitude<59.872965 || position.coords.latitude>60 || position.coords.longitude<8.693415 || position.coords.longitude>8.84){ // Test if we are outside the world heritage area of Rjukan
-        var modalInnhold="<h2>Det ser ikke ut som du er i Rjukan nå .. </h2><p> .. men kom gjerne hit og utforsk den spennende verdensarvarkitekturen og historien bak. Aktiver kartet når du er her, så ser du akkurat hvor du er, og hva du kan se i nærheten.</p><p>Spør <a href=\"https://www.visitrjukan.com/\">VisitRjukan</a> om arkitektur i verdensarvbyen.</p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
-        modal(modalInnhold, 50, true); // Do this if we are outside the area of Rjukan
-        locatorActive = !locatorActive; // Reset the variable if outside of Rjukan and return
-        return;}else{
+      // if(position.coords.latitude<59.872965 || position.coords.latitude>60 || position.coords.longitude<8.693415 || position.coords.longitude>8.84){ // Test if we are outside the world heritage area of Rjukan
+      //   var modalInnhold="<h2>Det ser ikke ut som du er i Rjukan nå .. </h2><p> .. men kom gjerne hit og utforsk den spennende verdensarvarkitekturen og historien bak. Aktiver kartet når du er her, så ser du akkurat hvor du er, og hva du kan se i nærheten.</p><p>Spør <a href=\"https://www.visitrjukan.com/\">VisitRjukan</a> om arkitektur i verdensarvbyen.</p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
+      //   modal(modalInnhold, 50, true); // Do this if we are outside the area of Rjukan
+      //   locatorActive = !locatorActive; // Reset the variable if outside of Rjukan and return
+      //   return;}else{
           // If we are inside the world heritage area of Rjukan, do this
           id = navigator.geolocation.watchPosition(success, error, options);
           document.getElementById("crosshairs").classList.add("crosshairsactive");
-          }
+          // }
         });
 
   }else{
@@ -193,9 +199,11 @@ var toggleLocator = function(){
       // then the slower WMS is loaded: https://www.norgeibilder.no/?x=141784&y=6655207&level=17&utm=33&projects=704&layers=&planned=0
       // Bakgrunnskart | Alternativt kartlag: matrikkel_bakgrunn
       // var key ='673B1E78E90DBCB2AD3D4C3E22D94B352D42FB9C02F7ED5F3FD70AD56C53A966F1A6EFDECCD090EFFC247FD9D054D1D39A908F0B6FBF60A28D018F0853CD0DA1'
-      L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4graatone&zoom={z}&x={x}&y={y}', {
-        attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a>', opacity: 0.5,
-      }).addTo(map);
+      // L.tileLayer('https://api.mapbox.com/styles/v1/tinnk/cjraprsqy0t382to5wrgg62t7/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGlubmsiLCJhIjoiY2pvaW9pY2J3MDBqNzNybXV0cGE0dGVzZiJ9.uHUQi8kSxca4_rVJV3OegA', { attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a> | <a href="http://www.mapbox.com/">MapBox</a>' , opacity: 1}).addTo(map);
+      L.tileLayer('https://api.mapbox.com/styles/v1/tinnk/cjraxsh892tgu2sqkpwzzbt6m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGlubmsiLCJhIjoiY2pvaW9pY2J3MDBqNzNybXV0cGE0dGVzZiJ9.uHUQi8kSxca4_rVJV3OegA', { attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a> | <a href="http://www.mapbox.com/">MapBox</a>' , opacity: 1}).addTo(map);
+      // L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4graatone&zoom={z}&x={x}&y={y}', {mapbox://styles/tinnk/cjraxsh892tgu2sqkpwzzbt6m
+      //   attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a>', opacity: 0.5,
+      // }).addTo(map);
 
       // HOUSES
       // load house points geoJSON data from assets/js/Houses.js
@@ -209,11 +217,11 @@ var toggleLocator = function(){
 
 
       function onEachFeature(feature, layer) {
-        layer.on('click', function() {
+        layer.on('click', function() {alert(feature.properties.externalURL);
           //$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$('#slider').addClass('slide-in').removeClass('slide-out');
-         $('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
+         if(feature.properties.externalURL == "false"){$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
           firstArticleLoad();
-         $('#mapid').focus();});
+         $('#mapid').focus();});}else{window.open(feature.properties.iframeResource, "_blank");};
        });
       }
 

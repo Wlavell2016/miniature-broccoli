@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Verdensarvbyen - Arkitektur, bygningstyper og byplanlegging i Rjukan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex"> <!-- During development -->
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon/apple-icon-152x152.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <!-- Lato Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/fonts.css">
+    <!--  Buy your own font-license at https://practicaltypography.com -->
+
+
+    <!-- Main/Hoved CSS -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <!-- Adding leaflet JS after Leaflet CSS -->
+    <!-- Laster leaflet JS etter Leaflet CSS -->
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+    <!-- <script src="assets/js/leaflet.curve.js"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Scripts for transforming projections -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <!-- Data for leaflet polygons and imageoverlays -->
+    <script src="assets/js/main.js" charset="utf-8"></script>
+    <script src="assets/js/bygninger.js" charset="utf-8"></script>
+    <script src="assets/js/omraader.js" charset="utf-8"></script>
+    <script src="assets/js/structures.js" charset="utf-8"></script>
+<script>L.TileLayer.WMTS=L.TileLayer.extend({defaultWmtsParams:{service:'WMTS',request:'GetTile',version:'1.0.0',layers:'',styles:'',tilematrixSet:'',format:'image/jpeg'},initialize:function(url,options){this._url=url;var wmtsParams=L.extend({},this.defaultWmtsParams);var tileSize=options.tileSize||this.options.tileSize;if(options.detectRetina&&L.Browser.retina){wmtsParams.width=wmtsParams.height=tileSize*2;}else{wmtsParams.width=wmtsParams.height=tileSize;} for(var i in options){if(!this.options.hasOwnProperty(i)&&i!="matrixIds"){wmtsParams[i]=options[i];}} this.wmtsParams=wmtsParams;this.matrixIds=options.matrixIds||this.getDefaultMatrix();L.setOptions(this,options);},onAdd:function(map){this._crs=this.options.crs||map.options.crs;L.TileLayer.prototype.onAdd.call(this,map);},getTileUrl:function(coords){var tileSize=this.options.tileSize;var nwPoint=coords.multiplyBy(tileSize);nwPoint.x+=1;nwPoint.y-=1;var sePoint=nwPoint.add(new L.Point(tileSize,tileSize));var zoom=this._tileZoom;var nw=this._crs.project(this._map.unproject(nwPoint,zoom));var se=this._crs.project(this._map.unproject(sePoint,zoom));tilewidth=se.x-nw.x;var ident=this.matrixIds[zoom].identifier;var tilematrix=""+ident;var X0=this.matrixIds[zoom].topLeftCorner.lng;var Y0=this.matrixIds[zoom].topLeftCorner.lat;var tilecol=Math.floor((nw.x-X0)/tilewidth);var tilerow=-Math.floor((nw.y-Y0)/tilewidth);var url=L.Util.template(this._url,{s:this._getSubdomain(coords)});return url+L.Util.getParamString(this.wmtsParams,url)+"&tilematrix="+tilematrix+"&tilerow="+tilerow+"&tilecol="+tilecol;},setParams:function(params,noRedraw){L.extend(this.wmtsParams,params);if(!noRedraw){this.redraw();} return this;},getDefaultMatrix:function(){var matrixIds3857=new Array(22);for(var i=0;i<22;i++){matrixIds3857[i]={identifier:""+i,topLeftCorner:new L.LatLng(20037508.3428,-20037508.3428)};} return matrixIds3857;}});L.tileLayer.wmts=function(url,options){return new L.TileLayer.WMTS(url,options);};</script>
+    <!-- Jquery -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- Leaflet control styling -->
+  </head>
+  <body style="background-color: '#fff';">
+   <header id = "header">
+      <div id = "headercontent" style='padding-left:20px;'>
+        <a href="index.html"><img id = "logo-image" src="assets/img/kommunevaapenet.png" alt="Verdensarven / Tinn kommune"></a>
+        <!-- <div class="nav-mobile fas fa-bars fa-2x"></div>  -->
+        <nav id="nav" style="display:inline;margin-right:20px;float:right;margin-top:-16px; font-color:'#fff';">
+          <ul class="nav-list" style="padding-bottom:20px;">
+            <li class="fas fa-info fa-lg nav-item" ></li>
+            <li class="fas fa-question fa-lg nav-item" ></li>
+            <li class="fas fa-map fa-lg nav-item" ></li>
+            <li class="fas fa-envelope fa-lg nav-item" ></li>
+            <!-- <li class="fas fa-flag fa-lg nav-item" ></li> -->
+            <li class="fas fa-crosshairs fa-lg nav-item" id="crosshairs" style="cursor: pointer;" onclick="toggleLocator();"></li>
+
+          </ul>
+        </nav>
+
+        <p id = "tittelnavn" onclick="window.location = 'index.html';">verdensarvbyen rjukan</p>
+      </div>
+    </header>
+
+    <div id = "mapid">
+    </div>
+
+    <div id = "slider" class="slide-out" style="cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab; overflow-y:hidden;" >
+      <iframe id = "sliderframe" src="assets/descriptions/rodbyen.html" ></iframe>
+    </div>
+    <div id="modal-background"></div>
+
+<div id="modal-container" style="display:none; font-family:'advocate-c41'; font-size:1.5rem; position:fixed; top:20%; left:50%; margin-left:0;background-color: #fff;  border: 2px solid rgba(35, 35, 35, 1); padding:0px 25px 10px 25px; opacity: 1;">
+
+  <div class="modal-content" id="modal-content">
+  </div>
+</div>
+<script>
+  // modal-function
+  var modal = function(modalInnhold, modalBredde, displayBackground = false){
+    if(displayBackground){
+          document.getElementById('modal-background').style.display = 'block';}
+  document.getElementById('modal-content').innerHTML = modalInnhold;
+  document.getElementById('modal-container').style.width = String(modalBredde) + "%";
+  document.getElementById('modal-container').style.left = String(100-modalBredde-7)/2 + "%";
+  document.getElementById('modal-container').style.display='block';
+}
+
+  // function for testing if session exists when first article is loaded. Display message if session does not exist.
+  function firstArticleLoad(){
+        if (sessionStorage.getItem("sessionExists") === null) {
+          var modalInnhold = "<h2>Du åpnet nettopp en artikkel!</h2><p>Trykk hurtig på artikkelen når du vil lukke den igjen.</p><p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>";
+          modal(modalInnhold, 40, true);
+          sessionStorage.setItem("sessionExists", "true");
+        }
+      }
+      var modalInnhold="<h2>Verdensarvbyen Rjukan</h2><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
+    modal(modalInnhold, 50, true);
+
+
+</script>
+  <!--<script>L.TileLayer.WMTS=L.TileLayer.extend({defaultWmtsParams:{service:'WMTS',request:'GetTile',version:'1.0.0',layers:'',styles:'',tilematrixSet:'',format:'image/jpeg'},initialize:function(url,options){this._url=url;var wmtsParams=L.extend({},this.defaultWmtsParams);var tileSize=options.tileSize||this.options.tileSize;if(options.detectRetina&&L.Browser.retina){wmtsParams.width=wmtsParams.height=tileSize*2;}else{wmtsParams.width=wmtsParams.height=tileSize;} for(var i in options){if(!this.options.hasOwnProperty(i)&&i!="matrixIds"){wmtsParams[i]=options[i];}} this.wmtsParams=wmtsParams;this.matrixIds=options.matrixIds||this.getDefaultMatrix();L.setOptions(this,options);},onAdd:function(map){this._crs=this.options.crs||map.options.crs;L.TileLayer.prototype.onAdd.call(this,map);},getTileUrl:function(coords){var tileSize=this.options.tileSize;var nwPoint=coords.multiplyBy(tileSize);nwPoint.x+=1;nwPoint.y-=1;var sePoint=nwPoint.add(new L.Point(tileSize,tileSize));var zoom=this._tileZoom;var nw=this._crs.project(this._map.unproject(nwPoint,zoom));var se=this._crs.project(this._map.unproject(sePoint,zoom));tilewidth=se.x-nw.x;var ident=this.matrixIds[zoom].identifier;var tilematrix=""+ident;var X0=this.matrixIds[zoom].topLeftCorner.lng;var Y0=this.matrixIds[zoom].topLeftCorner.lat;var tilecol=Math.floor((nw.x-X0)/tilewidth);var tilerow=-Math.floor((nw.y-Y0)/tilewidth);var url=L.Util.template(this._url,{s:this._getSubdomain(coords)});return url+L.Util.getParamString(this.wmtsParams,url)+"&tilematrix="+tilematrix+"&tilerow="+tilerow+"&tilecol="+tilecol;},setParams:function(params,noRedraw){L.extend(this.wmtsParams,params);if(!noRedraw){this.redraw();} return this;},getDefaultMatrix:function(){var matrixIds3857=new Array(22);for(var i=0;i<22;i++){matrixIds3857[i]={identifier:""+i,topLeftCorner:new L.LatLng(20037508.3428,-20037508.3428)};} return matrixIds3857;}});L.tileLayer.wmts=function(url,options){return new L.TileLayer.WMTS(url,options);};</script>-->
+
+    <!-- Javascript -->
+
+    <script>
+      // Slide the slider back only when mouse quickly pressed
+      $('#sliderframe').on('load', function(){
+        var iframe = $('#sliderframe').contents();
+        iframe.find("html").mousedown(function(){
+          startTime = new Date().getTime();
+        });
+        iframe.find("html").mouseup(function(){
+          endTime = new Date().getTime();
+          if (endTime - startTime < 250) {
+            toggle()
+          }
+        });
+      });
+    </script>
+
+    <script>
+      var map = L.map('mapid',{
+      zoomControl: false,minZoom: 13,
+      zoomSnap: 0.1,
+      maxBounds: [
+        //south west
+          [59.788543, 8.245382],
+        //north east
+          [59.989371, 8.831529]
+          ],
+      }).setView([59.88011364706956, 8.605479290708901], 14);
+
+      var id, target, options;
+      var current_position, current_accuracy;
+      var locatorActive = false;
+        function success(position) {
+        // for when getting location is a success
+         let coordinates = new L.LatLng(position.coords.latitude, position.coords.longitude);
+         map.setView(coordinates, map.getZoom());
+         if (current_position) {
+          map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+      }
+         current_position = L.circle(coordinates, {radius: 4, fill:true, color: "red", fillopacity: 1}).addTo(map);
+         current_accuracy = L.circle(coordinates, {radius: position.coords.accuracy, color: "red", fill: true, fillopacity: 0.1}).addTo(map);
+         // current_position.bringToFront();
+}
+
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+
+
+options = {
+  enableHighAccuracy: true,
+  timeout: 50000,
+  maximumAge: 0
+};
+
+// position.coords.latitude>59.881866 || position.coord.latitude<59.872372 || position.coord.longitude<8.601754 || position.coord.longitude>8.596850
+
+// navigator.geolocation.clearWatch(id);+
+var toggleLocator = function(){
+  locatorActive = !locatorActive;
+
+  if(locatorActive == true){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        alert(position.coords.latitude);alert(position.coords.longitude);
+      // if(position.coords.latitude<59.872965 || position.coords.latitude>60 || position.coords.longitude<8.693415 || position.coords.longitude>8.84){ // Test if we are outside the world heritage area of Rjukan
+      //   var modalInnhold="<h2>Det ser ikke ut som du er i Rjukan nå .. </h2><p> .. men kom gjerne hit og utforsk den spennende verdensarvarkitekturen og historien bak. Aktiver kartet når du er her, så ser du akkurat hvor du er, og hva du kan se i nærheten.</p><p>Spør <a href=\"https://www.visitrjukan.com/\">VisitRjukan</a> om arkitektur i verdensarvbyen.</p><span class=\"modal-content-btn fas fa-check-circle fa-lg\" onclick=\"document.getElementById('modal-background').style.display = 'none';document.getElementById('modal-container').style.display = 'none';\"></span>"
+      //   modal(modalInnhold, 50, true); // Do this if we are outside the area of Rjukan
+      //   locatorActive = !locatorActive; // Reset the variable if outside of Rjukan and return
+      //   return;}else{
+          // If we are inside the world heritage area of Rjukan, do this
+          id = navigator.geolocation.watchPosition(success, error, options);
+          document.getElementById("crosshairs").classList.add("crosshairsactive");
+          // }
+        });
+
+  }else{
+      document.getElementById("crosshairs").classList.remove("crosshairsactive");
+    navigator.geolocation.clearWatch(id);
+    map.setView([59.88011364706956, 8.605479290708901], 14);
+    map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+  }
+}
+
+      
+      map.createPane('strukturer');
+      map.createPane('Områder');
+      map.createPane('mainPane');
+      map.createPane('bygningsPane');
+      map.getPane('strukturer').style.zIndex = 202;
+      map.getPane('Områder').style.zIndex = 200;
+      map.getPane('mainPane').style.zIndex = 201;
+      map.getPane('bygningsPane').style.zIndex = 201;
+      // Baselayer | Alternative layer: matrikkel_bakgrunn
+      // In the following implementation first the quicker WMTS is loaded,
+      // then the slower WMS is loaded: https://www.norgeibilder.no/?x=141784&y=6655207&level=17&utm=33&projects=704&layers=&planned=0
+      // Bakgrunnskart | Alternativt kartlag: matrikkel_bakgrunn
+      // var key ='673B1E78E90DBCB2AD3D4C3E22D94B352D42FB9C02F7ED5F3FD70AD56C53A966F1A6EFDECCD090EFFC247FD9D054D1D39A908F0B6FBF60A28D018F0853CD0DA1'mapbox://styles/tinnk/cjrantcl92lcm2sn1bco63vn6
+       L.tileLayer('https://api.mapbox.com/styles/v1/tinnk/cjrbtych73p3g2tq0raqhlbhp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGlubmsiLCJhIjoiY2pvaW9pY2J3MDBqNzNybXV0cGE0dGVzZiJ9.uHUQi8kSxca4_rVJV3OegA', { attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a> | <a href="http://www.mapbox.com/">MapBox</a>' ,  opacity: 1}).addTo(map);
+      // L.tileLayer('https://api.mapbox.com/styles/v1/tinnk/cjraxsh892tgu2sqkpwzzbt6m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGlubmsiLCJhIjoiY2pvaW9pY2J3MDBqNzNybXV0cGE0dGVzZiJ9.uHUQi8kSxca4_rVJV3OegA', { attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a> | <a href="http://www.mapbox.com/">MapBox</a>' , opacity: 1}).addTo(map);
+      // L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4graatone&zoom={z}&x={x}&y={y}', {mapbox://styles/tinnk/cjraxsh892tgu2sqkpwzzbt6m
+      //   attribution: '<a href="http://www.tinn.kommune.no/">Tinn kommune</a> | <a href="http://www.kartverket.no/">Kartverket</a>', opacity: 0.5,
+      // }).addTo(map);
+
+      // HOUSES
+      // load house points geoJSON data from assets/js/Houses.js
+      //  L.geoJSON(points, {
+      //  pointToLayer: function (points, latlng) {
+      //  let houses = L.circleMarker(latlng, geojsonMarkerOptions);
+      //  houseLayer.addLayer(houses).addTo(map);
+      //  return houses
+      //}
+      //}).addTo(map);
+
+
+      function onEachFeature(feature, layer) {
+        layer.on('click', function() {alert(feature.properties.externalURL);
+          //$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$('#slider').addClass('slide-in').removeClass('slide-out');
+         if(feature.properties.externalURL == "false"){$('#sliderframe').attr('src', 'assets/descriptions/' + feature.properties.iframeResource).on('load', function(){$slider.setAttribute('class', 'slide-in');
+          firstArticleLoad();
+         $('#mapid').focus();});}else{window.open(feature.properties.iframeResource, "_blank");};
+       });
+      }
+
+      // FARGER / COLOR: http://colorbrewer2.org/#type=sequential&scheme=BuPu&n=9
+
+      // OMRÅDER / AREAS
+      // load polygon geoJSON data from assets/js/Boundaries.js
+      var Områder = L.geoJSON(omraader, {
+        style: function(feature) {return {
+          fillColor: feature.properties.fillcolor,
+          color: feature.properties.color,
+          weight: feature.properties.weight,
+          opacity: feature.properties.opacity,
+          fillOpacity: feature.properties.fillOpacity
+        };
+        },
+        pane: 'Områder',
+        onEachFeature: onEachFeature,
+      }).bindTooltip(function (layer) {
+    return String(layer.feature.properties.omraadenavn); // Needs to be a string
+  }, {sticky: true} //, {permanent: true, opacity: 0.5}
+  ).addTo(map);
+
+      // symbolize buildings based on husType values. (https://github.com/lwsu/leaflet-polygon-fillPattern)
+      function getFillColor(d, e) {
+         let p =( 
+          d === '11E' ? 'yellow' :
+              d === '11A' ? 'purple' :
+              d === 'E' ? 'red' :
+               d === '11'  ? 'blue' :
+               d === '11B'  ? 'purple' :
+               d === '11C'  ? 'blue' :
+               d === '11D'  ? 'purple' :
+               d === '5'  ? 'purple' :
+               d === '123'  ? 'red' :
+               d === 'J1'  ? 'red' :
+               d === 'J'  ? 'red' :
+               d === 'J5'  ? 'red' :
+               d === '119D'  ? 'green' :
+               d === '4H.15'  ? 'black' :
+                              'none');
+         if(p == 'none'){p = e};
+
+              return p;
+              }
+              function getfillopacity(d, e) {
+         let p =( 
+          d === '11E' ? 1 :
+          d === 'E' ? 1 :
+              d === '11A' ? 0.2 :
+               d === '11'  ? 0.2 :
+               d === '11B'  ? 0.5 :
+               d === 'J1'  ? 0.85 :
+               d === 'J1'  ? 0.65 :
+               d === 'J'  ? 0.4 :
+               d === '11C'  ? 0.1 :
+               d === '11D'  ? 0.2 :
+               d === '4H.15'  ? 0.6 :
+                              'none');
+         if(p == 'none'){p = 0.2};
+
+              return p;
+              }
+
+      // HOVEDLAG / MAIN LAYER
+       var beskrivelse = L.geoJSON(main, {
+         style: function(feature) {return {
+          // getFillColor(feature.properties.hustype, feature.properties.fillcolor),
+           fillColor: feature.properties.fillcolor,
+           //fillColor: feature.properties.fillcolor,
+           color: feature.properties.color,
+           weight: feature.properties.weight,
+           opacity: feature.properties.opacity,
+           fillOpacity: feature.properties.fillOpacity,
+           // getfillopacity(feature.properties.hustype, feature.properties.fillopacity),           
+           dashArray: feature.properties.dasharray
+         };
+         },
+         pane: 'mainPane',
+         onEachFeature: onEachFeature,
+       }).bindTooltip(function (layer) {
+    return String(layer.feature.properties.beskrivelse); // Needs to be a string
+  } //, {permanent: true, opacity: 0.5}
+  ).addTo(map);
+
+ 
+      // STRUKTURER / STRUCTURES
+      strukturRaster = L.layerGroup();
+      for (i = 0; i < strukturer.strukturdata.length; i++){
+        // Force evaluation - important
+        var evaluatedUrl = 'assets/descriptions/' + strukturer.strukturdata[i].url;
+        var rasterImageOverlay = L.imageOverlay(strukturer.strukturdata[i].imageUrl, strukturer.strukturdata[i].imageBounds,{ pane: 'strukturer',
+          interactive: true,
+          }).on('click', function(){
+            $('#sliderframe').attr('src', evaluatedUrl).on('load', function(){
+              firstArticleLoad();
+              $slider.setAttribute('class', 'slide-in');
+            $('#mapid').focus();});
+          }).addTo(strukturRaster);
+      }
+
+      // CURVES
+      // var path = L.curve(['M',[59.88011364706956, 8.605479290708901],
+      //     'C',[52.214338608258224,28.564453125000004],
+      //       [48.45835188280866,33.57421875000001],
+      //       [50.680797145321655,33.83789062500001],
+      //     'V',[48.40003249610685],
+      //     'L',[47.45839225859763,31.201171875],
+      //       [48.40003249610685,28.564453125000004],'Z'],
+      //     {color:'red',fill:true}).addTo(map);
+
+      // LAGKONTROLL / LAYER-CONTROL
+       var controlLayers = {
+      "Strukturer": strukturRaster,
+      "Verneverdi": strukturRaster,
+       "Interessant": beskrivelse,
+      //   //"Bygninger": bygningene,
+      "Områder": Områder
+       };
+
+      L.control.layers(null, controlLayers, {collapsed: false, position:'bottomleft'}).addTo(map);
+
+      // Flytt zoomkontroll / Move position of zoom control
+      L.control.zoom({
+        position:'bottomright'
+      }).addTo(map);
+
+      // Acquire the latitude and longitude of the center of the map. Useful for needing to recenter the map view.
+      // map.on('click',function() {
+      //     var center = map.getCenter()
+      //     console.log(center)
+      // });
+    </script>
+
+    <!-- Check for presence of mobile unit and add location-point, if relevant -->
+    <!-- Sjekk om bruker benytter en mobilenhet og legg i tilfelle til lokaliseringspunkt -->
+    <script src="assets/js/mobile.js"></script>
+    <!-- Slider-functionality -->
+    <!-- Slider-funksjonalitet -->
+    <script src="assets/js/slider.js"></script>
+    <!-- Hide scrollbar
+    <script>
+    document.getElementById('slider').style.right = parent.clientWidth - parent.offsetWidth + "px";
+    </script>-->
+
+  </body>
+</html>
