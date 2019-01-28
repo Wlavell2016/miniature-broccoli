@@ -1,0 +1,1 @@
+#hasheq((doc . (root (headline "Pollen markup") "\n" "\n" (items (item "You " (strong "wanted") " it — you " (em "got") " it.") "\n" (item (link "https://google.com/search?q=racket" "search for Racket"))) "\n" "\n" "\n" "test" "\n" "\n")) (metas . #hasheq((here-path . "C:\\Users\\Eier\\Desktop\\pollen-world-heritage-rjukan\\tests\\uptown.html.pm"))))

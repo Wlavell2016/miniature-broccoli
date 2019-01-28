@@ -1,0 +1,1 @@
+#hasheq((doc . "Era Vulgaris\nSongs for the Deaf\nLike Clockwork") (metas . #hasheq((here-path . "C:\\Users\\Eier\\Desktop\\pollen-world-heritage-rjukan\\tests\\hellp.txt.pp"))))
