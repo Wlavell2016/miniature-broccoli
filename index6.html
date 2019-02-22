@@ -29,6 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
     <!-- Data for leaflet polygons and imageoverlays -->
     <script src="assets/js/main.js" charset="utf-8"></script>
+    <script src="assets/js/byggelinje.js" charset="utf-8"></script>
     <script src="assets/js/bygninger.js" charset="utf-8"></script>
     <script src="assets/js/omraader.js" charset="utf-8"></script>
     <script src="assets/js/structures.js" charset="utf-8"></script>
@@ -191,12 +192,12 @@ var toggleLocator = function(){
   }
 }
 
-      
+      map.createPane('byggelinje');
       map.createPane('strukturer');
       map.createPane('Områder');
       map.createPane('mainPane');
       map.createPane('bygningsPane');
-      map.getPane('strukturer').style.zIndex = 202;
+      map.getPane('byggelinje').style.zIndex = 202;
       map.getPane('Områder').style.zIndex = 200;
       map.getPane('mainPane').style.zIndex = 201;
       map.getPane('bygningsPane').style.zIndex = 201;
@@ -292,6 +293,7 @@ var toggleLocator = function(){
               return p;
               }
 
+      // L.geoJSON(byggelinje, {color: '#383838'}).addTo(map);
       // HOVEDLAG / MAIN LAYER
        var beskrivelse = L.geoJSON(main, {
          style: function(feature) {return {
