@@ -298,12 +298,13 @@ var toggleLocator = function(){
        var beskrivelse = L.geoJSON(main, {
          style: function(feature) {return {
           // getFillColor(feature.properties.hustype, feature.properties.fillcolor),
-           fillColor: getFillColor(feature.properties.beskrivelse, feature.properties.fillcolor),
-           //fillColor: feature.properties.fillcolor,
+           //fillColor: getFillColor(feature.properties.beskrivelse, feature.properties.fillcolor),
+           fillColor: feature.properties.fillcolor,
            color: feature.properties.color,
            weight: feature.properties.weight,
            opacity: feature.properties.opacity,
-           fillOpacity: getfillopacity(feature.properties.beskrivelse, feature.properties.fillopacity),
+           fillOpacity: feature.properties.fillOpacity,
+           //fillOpacity: getfillopacity(feature.properties.beskrivelse, feature.properties.fillopacity),
            // getfillopacity(feature.properties.hustype, feature.properties.fillopacity),           
            dashArray: feature.properties.dasharray
          };
